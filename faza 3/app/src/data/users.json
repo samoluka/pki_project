@@ -1,0 +1,47 @@
+[
+    {
+        "username": "user1",
+        "password": "password1",
+        "firstName": "John",
+        "lastName": "Doe",
+        "address": "123 Main St",
+        "role": "customer",
+        "phoneNumber": "555-1234"
+    },
+    {
+        "username": "user2",
+        "password": "password2",
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "address": "456 Elm St",
+        "role": "customer",
+        "phoneNumber": "555-5678"
+    },
+    {
+        "username": "user3",
+        "password": "password3",
+        "firstName": "Mike",
+        "lastName": "Johnson",
+        "address": "789 Oak St",
+        "role": "customer",
+        "phoneNumber": "555-9012"
+    },
+    {
+        "username": "user4",
+        "password": "password4",
+        "firstName": "Sarah",
+        "lastName": "Williams",
+        "address": "987 Pine St",
+        "role": "customer",
+        "phoneNumber": "555-3456"
+    },
+    {
+        "username": "admin",
+        "password": "admin",
+        "firstName": "Admin",
+        "lastName": "Admin",
+        "address": "123 Admin St",
+        "role": "admin",
+        "phoneNumber": "555-6789"
+    }
+]
