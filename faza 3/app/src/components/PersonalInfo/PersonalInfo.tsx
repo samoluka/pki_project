@@ -1,7 +1,6 @@
 // basic login component using fluent ui
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
-  DefaultButton,
   Label,
   Link,
   MessageBar,
@@ -15,28 +14,14 @@ import {
   AppName,
   ColorTheme,
   cardStyle,
-} from "../shared/Constants";
-import UserStateStore from "../stores/UsersStateStore";
-import Header from "./Header";
+} from "../../shared/Constants";
+import UserStateStore from "../../stores/UsersStateStore";
+import User from "../../models/User";
+import { UserApi } from "../../api/UserApi";
 
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const userStore = useContext(UserStateStore);
-
-  const handleLogin = () => {
-    console.log("username:", username);
-    console.log("password:", password);
-    userStore.login(username, password).then((success) => {
-      if (success) {
-        // redirect to home page
-        window.location.href = "/home";
-      } else {
-        setMessage("Pogrešno korisničko ime ili lozinka");
-      }
-    });
-  };
+const PersonalInfo = () => {
+  const { firstName, lastName, username, password, phoneNumber, address } =
+    JSON.parse(localStorage.getItem("user"));
 
   const checkIfDisabled = () => {
     return username === "" || password === "";
@@ -50,7 +35,7 @@ const Login = () => {
       styles={{
         root: {
           width: "600px",
-          height: "600px",
+          height: "850px",
           backgroundColor: ColorTheme.COLOR_SECONDARY,
           ...cardStyle,
         },
@@ -73,9 +58,8 @@ const Login = () => {
         tokens={{ childrenGap: "l1" }}
       >
         <TextField
-          label="Korisničko ime"
-          value={username}
-          onChange={(e, newValue) => setUsername(newValue!)}
+          label="Ime"
+          value={firstName}
           styles={{
             root: {
               borderColor: ColorTheme.COLOR_TEXT,
@@ -87,21 +71,60 @@ const Login = () => {
           }}
         />
         <TextField
-          label="Lozinka"
-          type="password"
-          value={password}
-          onChange={(e, newValue) => setPassword(newValue!)}
+          label="Prezime"
+          value={lastName}
           styles={{
             root: {
               borderColor: ColorTheme.COLOR_TEXT,
               color: ColorTheme.COLOR_TEXT,
             },
+            field: {
+              backgroundClip: ColorTheme.COLOR_TEXT,
+            },
+          }}
+        />
+        <TextField
+          label="Korisničko ime"
+          value={username}
+          styles={{
+            root: {
+              borderColor: ColorTheme.COLOR_TEXT,
+              color: ColorTheme.COLOR_TEXT,
+            },
+            field: {
+              backgroundClip: ColorTheme.COLOR_TEXT,
+            },
+          }}
+        />
+        <TextField
+          label="Adresa"
+          value={address}
+          styles={{
+            root: {
+              borderColor: ColorTheme.COLOR_TEXT,
+              color: ColorTheme.COLOR_TEXT,
+            },
+            field: {
+              backgroundClip: ColorTheme.COLOR_TEXT,
+            },
+          }}
+        />
+        <TextField
+          label="Broj telefona"
+          value={phoneNumber}
+          styles={{
+            root: {
+              borderColor: ColorTheme.COLOR_TEXT,
+              color: ColorTheme.COLOR_TEXT,
+            },
+            field: {
+              backgroundClip: ColorTheme.COLOR_TEXT,
+            },
           }}
         />
         <PrimaryButton
           disabled={checkIfDisabled()}
-          text="Prijavi se"
-          onClick={handleLogin}
+          text="Izmeni podatke"
           styles={{
             root: {
               width: "100%",
@@ -118,33 +141,28 @@ const Login = () => {
             },
           }}
         />
-        {/* todo: fix this bar should not move other components */}
-        {message.length > 0 && (
-          <MessageBar
-            messageBarType={MessageBarType.error}
-            onDismiss={() => setMessage("")}
-            isMultiline={false}
-            dismissButtonAriaLabel="Close"
-          >
-            {message}
-          </MessageBar>
-        )}
-        <Link
+        <PrimaryButton
+          disabled={true}
+          text="Sačuvaj promene"
           styles={{
             root: {
-              color: ColorTheme.COLOR_TEXT,
+              width: "100%",
+              backgroundColor: ColorTheme.COLOR_TEXT,
+              borderColor: ColorTheme.COLOR_TEXT,
+            },
+            rootHovered: {
+              backgroundColor: ColorTheme.COLOR_HOVERED,
+              borderColor: ColorTheme.COLOR_HOVERED,
+            },
+            rootPressed: {
+              backgroundColor: ColorTheme.COLOR_HOVERED,
+              borderColor: ColorTheme.COLOR_HOVERED,
             },
           }}
-          onClick={() => {
-            // redirect to register page
-            window.location.href = "/register";
-          }}
-        >
-          Registruj se...
-        </Link>
+        />
       </Stack>
     </Stack>
   );
 };
 
-export default Login;
+export default PersonalInfo;

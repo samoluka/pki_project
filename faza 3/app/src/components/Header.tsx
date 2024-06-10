@@ -1,8 +1,8 @@
 import {
   ActionButton,
+  CommandBarButton,
   FontSizes,
   IconButton,
-  IconFontSizes,
   Label,
   Stack,
   getTheme,
@@ -19,6 +19,8 @@ const Header = () => {
         root: {
           backgroundColor: ColorTheme.COLOR_PRIMARY,
           minHeight: "100px",
+          height: "100px",
+          maxHeight: "100px",
           width: "100vw",
           position: "fixed",
           zIndex: 2,
@@ -39,6 +41,10 @@ const Header = () => {
               color: ColorTheme.COLOR_TEXT,
             },
           }}
+          onClick={() => {
+            // redirect to change password
+            document.location.href = "/home";
+          }}
         />
         <ActionButton
           text={"Proizvodi"}
@@ -51,6 +57,10 @@ const Header = () => {
               color: ColorTheme.COLOR_TEXT,
             },
           }}
+          onClick={() => {
+            // redirect to change password
+            document.location.href = "/products";
+          }}
         />
         <ActionButton
           text={"Infromacije"}
@@ -61,6 +71,39 @@ const Header = () => {
               borderColor: "transparent",
               fontSize: FontSizes.size32,
               color: ColorTheme.COLOR_TEXT,
+            },
+          }}
+        />
+        <CommandBarButton
+          text="Informacije"
+          menuProps={{
+            items: [
+              {
+                key: "licne",
+                text: "Licne informacije",
+                onClick: () => {
+                  // redirect to personal info
+                  document.location.href = "/personal-info";
+                },
+              },
+              {
+                key: "lozinka",
+                text: "Promena lozinke",
+                onClick: () => {
+                  // redirect to change password
+                  document.location.href = "/change-password";
+                },
+              },
+            ],
+          }}
+          styles={{
+            root: {
+              textHeight: "50px",
+              width: "fit-content",
+              borderColor: "transparent",
+              fontSize: FontSizes.size32,
+              color: ColorTheme.COLOR_TEXT,
+              backgroundColor: "transparent",
             },
           }}
         />

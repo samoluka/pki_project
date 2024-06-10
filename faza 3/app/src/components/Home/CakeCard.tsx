@@ -5,6 +5,7 @@ export interface ICakeCardProps {
   imageUrl: string;
   title: string;
   description: string;
+  id: number;
 }
 
 const CakeCard = (props: ICakeCardProps) => {
@@ -24,6 +25,9 @@ const CakeCard = (props: ICakeCardProps) => {
       tokens={{ padding: "l1" }}
     >
       <img
+        onClick={() => {
+          document.location.href = "/product/" + props.id;
+        }}
         src={props.imageUrl}
         alt="cake"
         style={{

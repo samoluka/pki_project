@@ -1,0 +1,196 @@
+[
+  {
+    "id": 1,
+    "type": "torta",
+    "picture": "/images/cakePhoto1.png",
+    "name": "Cake 1",
+    "description": "Delicious chocolate cake",
+    "price": 10.99,
+    "composition": "Chocolate, flour, sugar, eggs",
+    "comments": [
+      {
+        "username": "user3",
+        "rating": 5,
+        "text": "This cake is amazing!"
+      },
+      {
+        "username": "user34",
+        "rating": 4,
+        "text": "Great taste, highly recommended"
+      },
+      {
+        "username": "user12",
+        "rating": 2,
+        "text": "Not impressed with this cake"
+      },
+      {
+        "username": "user7",
+        "rating": 5,
+        "text": "Absolutely delicious!"
+      },
+      {
+        "username": "user18",
+        "rating": 3,
+        "text": "Average cake, nothing special"
+      },
+      {
+        "username": "user22",
+        "rating": 4,
+        "text": "Great value for the price"
+      },
+      {
+        "username": "user11",
+        "rating": 5,
+        "text": "Highly recommended, will definitely order again"
+      }
+    ]
+  },
+  {
+    "id": 2,
+
+    "type": "torta",
+    "name": "Cake 2",
+    "picture": "/images/cakePhoto1.png",
+    "description": "Vanilla sponge cake",
+    "price": 8.99,
+    "composition": "Vanilla, flour, sugar, eggs",
+    "comments": [
+      {
+        "username": "user3",
+        "rating": 4,
+        "text": "Light and fluffy, loved it!"
+      },
+      {
+        "username": "user1",
+        "rating": 3,
+        "text": "Decent cake, could be better"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "type": "torta",
+    "name": "Cake 3",
+    "picture": "/images/cakePhoto1.png",
+    "description": "Torta sa malinama",
+    "price": 12.99,
+    "composition": "Maline, brasno, secer, jaja",
+    "comments": [
+      {
+        "username": "user5",
+        "rating": 5,
+        "text": "Najbolja torta koju sam ikada probao!"
+      },
+      {
+        "username": "user6",
+        "rating": 4,
+        "text": "Odlican ukus, toplo preporucujem"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "type": "kolac",
+    "name": "Cake 4",
+    "picture": "/images/cakePhoto1.png",
+    "description": "Čokoladna torta sa lešnicima",
+    "price": 14.99,
+    "composition": "Čokolada, lešnici, brašno, šećer, jaja",
+    "comments": [
+      {
+        "username": "user4",
+        "rating": 5,
+        "text": "Fantastična kombinacija čokolade i lešnika!"
+      },
+      {
+        "username": "user8",
+        "rating": 3,
+        "text": "Dobra torta, ali mogla bi biti slađa"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "type": "torta",
+    "name": "Cake 5",
+    "picture": "/images/cakePhoto1.png",
+    "description": "Voćna torta",
+    "price": 9.99,
+    "composition": "Voće, brašno, šećer, jaja",
+    "comments": [
+      {
+        "username": "user9",
+        "rating": 4,
+        "text": "Osvežavajuća torta, savršena za letnje dane"
+      },
+      {
+        "username": "user10",
+        "rating": 5,
+        "text": "Preukusna kombinacija voća i kreme"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "type": "torta",
+    "name": "Cake 6",
+    "picture": "/images/cakePhoto1.png",
+    "description": "Štrudla sa jabukama",
+    "price": 7.99,
+    "composition": "Jabuke, cimet, šećer, testo",
+    "comments": [
+      {
+        "username": "user13",
+        "rating": 5,
+        "text": "Najbolja štrudla koju sam ikada jeo!"
+      },
+      {
+        "username": "user14",
+        "rating": 4,
+        "text": "Divan miris i ukus, prava poslastica"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "type": "kolac",
+    "name": "Cake 7",
+    "picture": "/images/cakePhoto1.png",
+    "description": "Krem pita sa vanilom",
+    "price": 11.99,
+    "composition": "Vanila, šećer, jaja, testo",
+    "comments": [
+      {
+        "username": "user15",
+        "rating": 4,
+        "text": "Kremasta i ukusna pita, savršena za desert"
+      },
+      {
+        "username": "user16",
+        "rating": 3,
+        "text": "Solidna pita, ali mogla bi biti slađa"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "type": "kolac",
+    "name": "Cake 8",
+    "picture": "/images/cakePhoto1.png",
+    "description": "Čizkejk sa malinama",
+    "price": 13.99,
+    "composition": "Maline, krem sir, keks, šećer",
+    "comments": [
+      {
+        "username": "user17",
+        "rating": 5,
+        "text": "Najbolji čizkejk ikada!"
+      },
+      {
+        "username": "user19",
+        "rating": 4,
+        "text": "Preukusna kombinacija malina i krekera"
+      }
+    ]
+  }
+]

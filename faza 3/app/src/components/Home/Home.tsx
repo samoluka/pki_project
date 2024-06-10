@@ -1,10 +1,19 @@
-import exp from "constants";
-import Header from "../Header";
 import { IconButton, Stack } from "@fluentui/react";
-import CakeCard from "./CakeCard";
+import { useEffect, useState } from "react";
+import { CakeApi } from "../../api/CakeApi";
+import { Cake } from "../../models/Cake";
 import { ColorTheme } from "../../shared/Constants";
+import Header from "../Header";
+import CakeCard from "./CakeCard";
 
 const Home = () => {
+  const [cakes, setCakes] = useState<Cake[]>([]);
+  const [indexLeft, setIndexLeft] = useState(0);
+
+  useEffect(() => {
+    setCakes(CakeApi.Cakes);
+  }, [CakeApi.Cakes]);
+
   return (
     <Stack
       styles={{
@@ -36,22 +45,37 @@ const Home = () => {
               color: ColorTheme.COLOR_TEXT,
             },
           }}
+          disabled={indexLeft === 0 || cakes.length === 0}
+          onClick={() => {
+            if (indexLeft > 0) {
+              setIndexLeft(indexLeft - 1);
+            }
+          }}
         />
-        <CakeCard
-          imageUrl={process.env.PUBLIC_URL + "/images/cakePhoto1.png"}
-          title="Dobra torta 1"
-          description="Super dobra torta trebate probati"
-        />
-        <CakeCard
-          imageUrl={process.env.PUBLIC_URL + "/images/cakePhoto1.png"}
-          title="Dobra torta 1"
-          description="Super dobra torta trebate probati. Super dobra torta trebate probati. Super dobra torta trebate probati. Super dobra torta trebate probati. Super dobra torta trebate probati. Super dobra torta trebate probati. "
-        />
-        <CakeCard
-          imageUrl={process.env.PUBLIC_URL + "/images/cakePhoto1.png"}
-          title="Dobra torta 1"
-          description="Super dobra torta trebate probati"
-        />
+        {cakes[indexLeft] && (
+          <CakeCard
+            imageUrl={process.env.PUBLIC_URL + cakes[indexLeft].picture}
+            title={cakes[indexLeft].name}
+            description={cakes[indexLeft].description}
+            id={cakes[indexLeft].id}
+          />
+        )}
+        {cakes[indexLeft + 1] && (
+          <CakeCard
+            imageUrl={process.env.PUBLIC_URL + cakes[indexLeft + 1].picture}
+            title={cakes[indexLeft + 1].name}
+            description={cakes[indexLeft + 1].description}
+            id={cakes[indexLeft + 1].id}
+          />
+        )}
+        {cakes[indexLeft + 2] && (
+          <CakeCard
+            imageUrl={process.env.PUBLIC_URL + cakes[indexLeft + 2].picture}
+            title={cakes[indexLeft + 2].name}
+            description={cakes[indexLeft + 2].description}
+            id={cakes[indexLeft + 2].id}
+          />
+        )}
         <IconButton
           iconProps={{ iconName: "DoubleChevronRight12" }}
           title="Emoji"
@@ -61,6 +85,12 @@ const Home = () => {
               fontSize: 60,
               color: ColorTheme.COLOR_TEXT,
             },
+          }}
+          disabled={indexLeft + 2 > cakes.length - 2}
+          onClick={() => {
+            if (indexLeft + 2 < cakes.length) {
+              setIndexLeft(indexLeft + 1);
+            }
           }}
         />
       </Stack>

@@ -15,3 +15,18 @@ export const cardStyle = {
 
 export const AppName = "Slatki Zalogaj";
 export const AppFontFamily = "Geneva";
+
+export const commonButtonStyles = {
+  root: {
+    backgroundColor: ColorTheme.COLOR_TEXT,
+    borderColor: ColorTheme.COLOR_TEXT,
+  },
+  rootHovered: {
+    backgroundColor: ColorTheme.COLOR_HOVERED,
+    borderColor: ColorTheme.COLOR_HOVERED,
+  },
+  rootPressed: {
+    backgroundColor: ColorTheme.COLOR_HOVERED,
+    borderColor: ColorTheme.COLOR_HOVERED,
+  },
+};
