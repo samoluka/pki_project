@@ -1,165 +1,185 @@
 // basic login component using fluent ui
-import { useContext, useEffect, useState } from "react";
 import {
   Label,
-  Link,
   MessageBar,
   MessageBarType,
   PrimaryButton,
   Stack,
   TextField,
 } from "@fluentui/react";
+import { useState } from "react";
+import { UserApi } from "../../api/UserApi";
 import {
   AppFontFamily,
   AppName,
   ColorTheme,
   cardStyle,
+  commonButtonStyles,
 } from "../../shared/Constants";
-import UserStateStore from "../../stores/UsersStateStore";
-import User from "../../models/User";
-import { UserApi } from "../../api/UserApi";
+import Header from "../Header";
 
 const PersonalInfo = () => {
-  const { firstName, lastName, username, password, phoneNumber, address } =
-    JSON.parse(localStorage.getItem("user"));
+  const { firstName, lastName, username, phoneNumber, address } = JSON.parse(
+    localStorage.getItem("user")
+  );
 
-  const checkIfDisabled = () => {
-    return username === "" || password === "";
-  };
+  // create state from local storage
+  const [user, setUser] = useState({
+    firstName: firstName,
+    lastName: lastName,
+    username: username,
+    phoneNumber: phoneNumber,
+    address: address,
+  });
+
+  const [message, setMessage] = useState("");
 
   return (
     <Stack
-      horizontalAlign="center"
-      verticalAlign="center"
-      verticalFill
       styles={{
         root: {
-          width: "600px",
-          height: "850px",
-          backgroundColor: ColorTheme.COLOR_SECONDARY,
-          ...cardStyle,
+          minHeight: "100vh",
+          width: "100vw",
         },
       }}
+      horizontalAlign="center"
     >
-      <Label
+      <Header />
+      <Stack
+        horizontalAlign="center"
+        verticalAlign="center"
+        verticalFill
         styles={{
           root: {
-            color: ColorTheme.COLOR_TEXT,
-            fontFamily: `${AppFontFamily}`,
-            fontSize: "80px",
+            width: "600px",
+            height: "600px",
+            marginTop: "7%",
+            backgroundColor: ColorTheme.COLOR_SECONDARY,
+            ...cardStyle,
           },
         }}
       >
-        {AppName}
-      </Label>
-      <Stack
-        horizontalAlign="center"
-        styles={{ root: { width: "fit-content" } }}
-        tokens={{ childrenGap: "l1" }}
-      >
-        <TextField
-          label="Ime"
-          value={firstName}
+        <Label
           styles={{
             root: {
-              borderColor: ColorTheme.COLOR_TEXT,
               color: ColorTheme.COLOR_TEXT,
-            },
-            field: {
-              backgroundClip: ColorTheme.COLOR_TEXT,
-            },
-          }}
-        />
-        <TextField
-          label="Prezime"
-          value={lastName}
-          styles={{
-            root: {
-              borderColor: ColorTheme.COLOR_TEXT,
-              color: ColorTheme.COLOR_TEXT,
-            },
-            field: {
-              backgroundClip: ColorTheme.COLOR_TEXT,
+              fontFamily: `${AppFontFamily}`,
+              fontSize: "80px",
             },
           }}
-        />
-        <TextField
-          label="Korisničko ime"
-          value={username}
-          styles={{
-            root: {
-              borderColor: ColorTheme.COLOR_TEXT,
-              color: ColorTheme.COLOR_TEXT,
-            },
-            field: {
-              backgroundClip: ColorTheme.COLOR_TEXT,
-            },
-          }}
-        />
-        <TextField
-          label="Adresa"
-          value={address}
-          styles={{
-            root: {
-              borderColor: ColorTheme.COLOR_TEXT,
-              color: ColorTheme.COLOR_TEXT,
-            },
-            field: {
-              backgroundClip: ColorTheme.COLOR_TEXT,
-            },
-          }}
-        />
-        <TextField
-          label="Broj telefona"
-          value={phoneNumber}
-          styles={{
-            root: {
-              borderColor: ColorTheme.COLOR_TEXT,
-              color: ColorTheme.COLOR_TEXT,
-            },
-            field: {
-              backgroundClip: ColorTheme.COLOR_TEXT,
-            },
-          }}
-        />
-        <PrimaryButton
-          disabled={checkIfDisabled()}
-          text="Izmeni podatke"
-          styles={{
-            root: {
-              width: "100%",
-              backgroundColor: ColorTheme.COLOR_TEXT,
-              borderColor: ColorTheme.COLOR_TEXT,
-            },
-            rootHovered: {
-              backgroundColor: ColorTheme.COLOR_HOVERED,
-              borderColor: ColorTheme.COLOR_HOVERED,
-            },
-            rootPressed: {
-              backgroundColor: ColorTheme.COLOR_HOVERED,
-              borderColor: ColorTheme.COLOR_HOVERED,
-            },
-          }}
-        />
-        <PrimaryButton
-          disabled={true}
-          text="Sačuvaj promene"
-          styles={{
-            root: {
-              width: "100%",
-              backgroundColor: ColorTheme.COLOR_TEXT,
-              borderColor: ColorTheme.COLOR_TEXT,
-            },
-            rootHovered: {
-              backgroundColor: ColorTheme.COLOR_HOVERED,
-              borderColor: ColorTheme.COLOR_HOVERED,
-            },
-            rootPressed: {
-              backgroundColor: ColorTheme.COLOR_HOVERED,
-              borderColor: ColorTheme.COLOR_HOVERED,
-            },
-          }}
-        />
+        >
+          {AppName}
+        </Label>
+        <Stack
+          horizontalAlign="center"
+          styles={{ root: { width: "fit-content" } }}
+          tokens={{ childrenGap: "l1" }}
+        >
+          <TextField
+            label="Korisničko ime"
+            value={user.username}
+            disabled
+            styles={{
+              root: {
+                borderColor: ColorTheme.COLOR_TEXT,
+                color: ColorTheme.COLOR_TEXT,
+              },
+              field: {
+                backgroundClip: ColorTheme.COLOR_TEXT,
+              },
+            }}
+          />
+          <TextField
+            label="Ime"
+            value={user.firstName}
+            styles={{
+              root: {
+                borderColor: ColorTheme.COLOR_TEXT,
+                color: ColorTheme.COLOR_TEXT,
+              },
+              field: {
+                backgroundClip: ColorTheme.COLOR_TEXT,
+              },
+            }}
+            onChange={(_, value) => {
+              setUser({ ...user, firstName: value });
+            }}
+          />
+          <TextField
+            label="Prezime"
+            value={user.lastName}
+            styles={{
+              root: {
+                borderColor: ColorTheme.COLOR_TEXT,
+                color: ColorTheme.COLOR_TEXT,
+              },
+              field: {
+                backgroundClip: ColorTheme.COLOR_TEXT,
+              },
+            }}
+            onChange={(_, value) => {
+              setUser({ ...user, lastName: value });
+            }}
+          />
+          <TextField
+            label="Adresa"
+            value={address}
+            styles={{
+              root: {
+                borderColor: ColorTheme.COLOR_TEXT,
+                color: ColorTheme.COLOR_TEXT,
+              },
+              field: {
+                backgroundClip: ColorTheme.COLOR_TEXT,
+              },
+            }}
+            onChange={(_, value) => {
+              setUser({ ...user, address: value });
+            }}
+          />
+          <TextField
+            label="Broj telefona"
+            value={user.phoneNumber}
+            styles={{
+              root: {
+                borderColor: ColorTheme.COLOR_TEXT,
+                color: ColorTheme.COLOR_TEXT,
+              },
+              field: {
+                backgroundClip: ColorTheme.COLOR_TEXT,
+              },
+            }}
+            onChange={(_, value) => {
+              setUser({ ...user, phoneNumber: value });
+            }}
+          />
+          <PrimaryButton
+            text="Sačuvaj promene"
+            styles={{
+              ...commonButtonStyles,
+            }}
+            onClick={() => {
+              // save changes in localstorage and in UserApi
+              const storedUser = JSON.parse(localStorage.getItem("user"));
+              const updatedUser = {
+                ...storedUser,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                phoneNumber: user.phoneNumber,
+                address: user.address,
+              };
+              console.log("updatedUser", updatedUser);
+              localStorage.setItem("user", JSON.stringify(updatedUser));
+              UserApi.updateUser(updatedUser);
+              setMessage("Uspešno ste sačuvali promene!");
+            }}
+          />
+          {message && (
+            <MessageBar messageBarType={MessageBarType.success}>
+              {message}
+            </MessageBar>
+          )}
+        </Stack>
       </Stack>
     </Stack>
   );

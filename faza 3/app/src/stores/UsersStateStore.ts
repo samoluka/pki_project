@@ -1,9 +1,9 @@
 // mobx store that contains all registered users and current loged user
 // It is used to manage user state in the application
-import { observable, action } from "mobx";
-import User from "../models/User";
-import { UserApi } from "../api/UserApi";
+import { action, observable } from "mobx";
 import { createContext } from "react";
+import { UserApi } from "../api/UserApi";
+import User from "../models/User";
 
 export class UserStateStore {
   @observable
@@ -11,9 +11,10 @@ export class UserStateStore {
 
   @action
   async login(username: string, password: string): Promise<boolean> {
-    const user = await UserApi.login(username, password);
+    const user = UserApi.login(username, password);
     if (user) {
       this.currentUser = user;
+      console.log("User logged in", user);
       return true;
     }
     return false;
@@ -26,6 +27,11 @@ export class UserStateStore {
   @action
   logout() {
     this.currentUser = null;
+  }
+
+  constructor() {
+    // read user from local storage
+    this.currentUser = JSON.parse(localStorage.getItem("user") || "null");
   }
 }
 

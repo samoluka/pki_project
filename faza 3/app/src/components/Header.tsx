@@ -62,18 +62,6 @@ const Header = () => {
             document.location.href = "/products";
           }}
         />
-        <ActionButton
-          text={"Infromacije"}
-          styles={{
-            root: {
-              textHeight: "50px",
-              width: "fit-content",
-              borderColor: "transparent",
-              fontSize: FontSizes.size32,
-              color: ColorTheme.COLOR_TEXT,
-            },
-          }}
-        />
         <CommandBarButton
           text="Informacije"
           menuProps={{
@@ -132,7 +120,7 @@ const Header = () => {
         >
           {AppName}
         </Label>
-        <Stack verticalAlign="space-between" tokens={{ childrenGap: "l1" }}>
+        <Stack verticalAlign="center" tokens={{ childrenGap: "l1" }}>
           <IconButton
             iconProps={{ iconName: "SignOut" }}
             size={1}
@@ -143,6 +131,12 @@ const Header = () => {
                 fontSize: 30,
                 color: ColorTheme.COLOR_TEXT,
               },
+            }}
+            onClick={() => {
+              // clear local storage user key
+              localStorage.removeItem("user");
+              // redirect to login
+              document.location.href = "/";
             }}
           />
           <IconButton
