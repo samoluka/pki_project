@@ -106,6 +106,10 @@ const Header = () => {
               color: ColorTheme.COLOR_TEXT,
             },
           }}
+          onClick={() => {
+            // redirect to change password
+            document.location.href = "/order";
+          }}
         />
       </Stack>
       <Stack horizontal tokens={{ childrenGap: "l1", padding: "l1" }}>

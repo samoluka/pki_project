@@ -1,7 +1,16 @@
-import { Label, PrimaryButton, SpinButton, Stack } from "@fluentui/react";
+import {
+  Label,
+  MessageBar,
+  MessageBarType,
+  PrimaryButton,
+  SpinButton,
+  Stack,
+} from "@fluentui/react";
 import { useState } from "react";
 import { useParams } from "react-router";
 import { CakeApi } from "../../api/CakeApi";
+import { Cake } from "../../models/Cake";
+import { Order } from "../../models/Order";
 import User from "../../models/User";
 import {
   ColorTheme,
@@ -17,6 +26,23 @@ const Product = () => {
   const cake = CakeApi.Cakes.find((cake) => cake.id === parseInt(id));
   const { name, description, composition, price, picture } = cake;
   const [quantity, setQuantity] = useState(1);
+  const [message, setMessage] = useState("");
+
+  const addProductToCart = (cake: Cake, quantity: number) => {
+    const currentUser = JSON.parse(localStorage.getItem("user")) as User;
+    const currentOrder =
+      ((JSON.parse(localStorage.getItem("order")) as Order) || undefined) ??
+      new Order(currentUser.username, [], "In progress");
+
+    currentOrder.sweets.push({
+      cakeName: cake.name,
+      quantity: quantity,
+      pricePerCake: cake.price,
+      totalPrice: cake.price * quantity,
+    });
+    localStorage.setItem("order", JSON.stringify(currentOrder));
+    setMessage("Proizvod je dodat u korpu!");
+  };
 
   return (
     <Stack
@@ -154,8 +180,18 @@ const Product = () => {
                 styles={{
                   ...commonButtonStyles,
                 }}
+                onClick={() => addProductToCart(cake, quantity)}
               />
             </Stack>
+            {message.length > 0 && (
+              <MessageBar
+                messageBarType={MessageBarType.success}
+                onDismiss={() => setMessage("")}
+                dismissButtonAriaLabel="Close"
+              >
+                {message}
+              </MessageBar>
+            )}
           </Stack>
         </Stack>
         <Stack
