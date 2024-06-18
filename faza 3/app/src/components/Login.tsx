@@ -1,7 +1,5 @@
 // basic login component using fluent ui
-import { useContext, useState } from "react";
 import {
-  DefaultButton,
   Label,
   Link,
   MessageBar,
@@ -10,32 +8,31 @@ import {
   Stack,
   TextField,
 } from "@fluentui/react";
+import { useState } from "react";
+import { UserApi } from "../api/UserApi";
 import {
   AppFontFamily,
   AppName,
   ColorTheme,
   cardStyle,
 } from "../shared/Constants";
-import UserStateStore from "../stores/UsersStateStore";
-import Header from "./Header";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const userStore = useContext(UserStateStore);
 
   const handleLogin = () => {
     console.log("username:", username);
     console.log("password:", password);
-    userStore.login(username, password).then((success) => {
-      if (success) {
-        // redirect to home page
-        window.location.href = "/home";
-      } else {
-        setMessage("Pogrešno korisničko ime ili lozinka");
-      }
-    });
+    const result = UserApi.getInstance().login(username, password);
+
+    if (result !== null) {
+      // redirect to home page
+      window.location.href = "/home";
+    } else {
+      setMessage("Pogrešno korisničko ime ili lozinka");
+    }
   };
 
   const checkIfDisabled = () => {

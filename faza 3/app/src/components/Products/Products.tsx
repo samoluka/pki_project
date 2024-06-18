@@ -9,7 +9,7 @@ export const Products = () => {
   const [leftIndex, setLeftIndex] = useState(0);
   const [rightIndex, setRightIndex] = useState(0);
 
-  const products = CakeApi.Cakes;
+  const products = CakeApi.getInstance().Cakes;
   const torte = products.filter((product) => product.type === "torta");
   const kolaci = products.filter((product) => product.type === "kolac");
 
@@ -144,7 +144,7 @@ export const Products = () => {
             <IconButton
               iconProps={{ iconName: "DoubleChevronRight12" }}
               disabled={rightIndex * 3 + 3 >= kolaci.length}
-              onClick={() => setRightIndex(rightIndex + 3)}
+              onClick={() => setRightIndex(rightIndex + 1)}
               styles={{
                 root: {
                   color: ColorTheme.COLOR_TEXT,

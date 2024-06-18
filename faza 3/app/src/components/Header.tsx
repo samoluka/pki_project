@@ -7,9 +7,13 @@ import {
   Stack,
   getTheme,
 } from "@fluentui/react";
+import { OrderApi } from "../api/OrderApi";
+import { UserApi } from "../api/UserApi";
 import { AppFontFamily, AppName, ColorTheme } from "../shared/Constants";
 
 const Header = () => {
+  const user = UserApi.getInstance().LogedUser;
+
   return (
     <Stack
       horizontal
@@ -46,22 +50,58 @@ const Header = () => {
             document.location.href = "/home";
           }}
         />
-        <ActionButton
-          text={"Proizvodi"}
-          styles={{
-            root: {
-              textHeight: "50px",
-              width: "fit-content",
-              borderColor: "transparent",
-              fontSize: FontSizes.size32,
-              color: ColorTheme.COLOR_TEXT,
-            },
-          }}
-          onClick={() => {
-            // redirect to change password
-            document.location.href = "/products";
-          }}
-        />
+        {user.role === "admin" ? (
+          <CommandBarButton
+            text="Proizvodi"
+            menuProps={{
+              items: [
+                {
+                  key: "novi",
+                  text: "Novi proizvod",
+                  onClick: () => {
+                    // redirect to personal info
+                    document.location.href = "/new-product";
+                  },
+                },
+                {
+                  key: "Pregled",
+                  text: "Pregled",
+                  onClick: () => {
+                    // redirect to change password
+                    document.location.href = "/products";
+                  },
+                },
+              ],
+            }}
+            styles={{
+              root: {
+                textHeight: "50px",
+                width: "fit-content",
+                borderColor: "transparent",
+                fontSize: FontSizes.size32,
+                color: ColorTheme.COLOR_TEXT,
+                backgroundColor: "transparent",
+              },
+            }}
+          />
+        ) : (
+          <ActionButton
+            text={"Proizvodi"}
+            styles={{
+              root: {
+                textHeight: "50px",
+                width: "fit-content",
+                borderColor: "transparent",
+                fontSize: FontSizes.size32,
+                color: ColorTheme.COLOR_TEXT,
+              },
+            }}
+            onClick={() => {
+              // redirect to change password
+              document.location.href = "/products";
+            }}
+          />
+        )}
         <CommandBarButton
           text="Informacije"
           menuProps={{
@@ -96,7 +136,7 @@ const Header = () => {
           }}
         />
         <ActionButton
-          text={"Korpa"}
+          text={user.role === "admin" ? "Narudžbine" : "Korpa"}
           styles={{
             root: {
               textHeight: "50px",
@@ -132,6 +172,7 @@ const Header = () => {
             ariaLabel="Emoji"
             styles={{
               icon: {
+                paddingLeft: "20px",
                 fontSize: 30,
                 color: ColorTheme.COLOR_TEXT,
               },
@@ -153,6 +194,16 @@ const Header = () => {
                 fontSize: 30,
                 color: ColorTheme.COLOR_TEXT,
               },
+            }}
+            menuProps={{
+              items: OrderApi.getInstance()
+                .getAllOrdersForUser(user.username)
+                .map((order) => {
+                  return {
+                    key: order.id.toString(),
+                    text: `Porudzbina ${order.id}: ${order.status}`,
+                  };
+                }),
             }}
           />
         </Stack>

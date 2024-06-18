@@ -1,18 +1,14 @@
 import { IconButton, Stack } from "@fluentui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CakeApi } from "../../api/CakeApi";
-import { Cake } from "../../models/Cake";
 import { ColorTheme } from "../../shared/Constants";
 import Header from "../Header";
 import CakeCard from "./CakeCard";
 
 const Home = () => {
-  const [cakes, setCakes] = useState<Cake[]>([]);
   const [indexLeft, setIndexLeft] = useState(0);
 
-  useEffect(() => {
-    setCakes(CakeApi.Cakes);
-  }, [CakeApi.Cakes]);
+  const cakes = CakeApi.getInstance().Cakes;
 
   return (
     <Stack

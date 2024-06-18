@@ -1,5 +1,4 @@
 // basic login component using fluent ui
-import { useContext, useState } from "react";
 import {
   Label,
   Link,
@@ -9,14 +8,14 @@ import {
   Stack,
   TextField,
 } from "@fluentui/react";
+import { useState } from "react";
+import { UserApi } from "../api/UserApi";
 import {
   AppFontFamily,
   AppName,
   ColorTheme,
   cardStyle,
 } from "../shared/Constants";
-import UserStateStore from "../stores/UsersStateStore";
-import User from "../models/User";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -24,26 +23,21 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repetedPassword, setRepetedPassword] = useState("");
-  const [adress, setAdress] = useState("");
+  const [address, setAdress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
-  const userStore = useContext(UserStateStore);
-
   const handleRegister = () => {
-    userStore
-      .register(
-        new User(
-          username,
-          password,
-          firstName,
-          lastName,
-          adress,
-          phoneNumber,
-          "user"
-        )
-      )
-      .then(() => setMessage("Uspešno ste se registrovali"));
+    UserApi.getInstance().register({
+      firstName,
+      lastName,
+      username,
+      password,
+      address,
+      phoneNumber,
+      role: "user",
+    });
+    setMessage("Uspešno ste se registrovali");
   };
 
   const checkIfDisabled = () => {
@@ -148,7 +142,7 @@ const Register = () => {
         />
         <TextField
           label="Adresa"
-          value={adress}
+          value={address}
           onChange={(e, newValue) => setAdress(newValue!)}
           styles={{
             root: {

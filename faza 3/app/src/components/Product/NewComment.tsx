@@ -13,7 +13,7 @@ import {
 } from "../../shared/Constants";
 
 export const NewComment = (props: {
-  callback: (rating: number, text: string) => {};
+  callback: (rating: number, text: string) => void;
 }) => {
   const [rating, setRating] = useState(3);
   const [text, setText] = useState("");
@@ -56,6 +56,7 @@ export const NewComment = (props: {
           styles={{
             ...commonButtonStyles,
           }}
+          onClick={() => props.callback(rating, text)}
         />
       </Stack>
     </Stack>

@@ -1,5 +1,5 @@
 import { Label, Rating, Stack } from "@fluentui/react";
-import User from "../../models/User";
+import { UserApi } from "../../api/UserApi";
 import { ColorTheme, cardStyle } from "../../shared/Constants";
 
 export const CommentStack = (props: {
@@ -9,8 +9,7 @@ export const CommentStack = (props: {
 }) => {
   // if username is equal to localstorage username, background color should be primary else secondary
   const backgroundColor =
-    props.username ===
-    (JSON.parse(localStorage.getItem("user")) as User).username
+    props.username === UserApi.getInstance().LogedUser.username
       ? ColorTheme.COLOR_PRIMARY
       : ColorTheme.COLOR_SECONDARY;
   return (

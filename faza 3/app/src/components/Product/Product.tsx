@@ -9,9 +9,10 @@ import {
 import { useState } from "react";
 import { useParams } from "react-router";
 import { CakeApi } from "../../api/CakeApi";
+import { OrderApi } from "../../api/OrderApi";
+import { UserApi } from "../../api/UserApi";
 import { Cake } from "../../models/Cake";
 import { Order } from "../../models/Order";
-import User from "../../models/User";
 import {
   ColorTheme,
   cardStyle,
@@ -23,25 +24,60 @@ import { NewComment } from "./NewComment";
 
 const Product = () => {
   let { id } = useParams();
-  const cake = CakeApi.Cakes.find((cake) => cake.id === parseInt(id));
-  const { name, description, composition, price, picture } = cake;
+  const cake = CakeApi.getInstance().Cakes.find(
+    (cake) => cake.id === parseInt(id)
+  );
+  const { name, description, composition, price, picture, promoPrice } = cake;
   const [quantity, setQuantity] = useState(1);
+  const [newPrice, setNewPrice] = useState(promoPrice ?? price);
   const [message, setMessage] = useState("");
 
   const addProductToCart = (cake: Cake, quantity: number) => {
-    const currentUser = JSON.parse(localStorage.getItem("user")) as User;
+    const currentUser = UserApi.getInstance().LogedUser;
     const currentOrder =
-      ((JSON.parse(localStorage.getItem("order")) as Order) || undefined) ??
-      new Order(currentUser.username, [], "In progress");
+      OrderApi.getInstance().getCurrentOrder() ??
+      new Order(
+        currentUser.username,
+        [],
+        "In progress", // get random order id
+        Math.floor(Math.random() * 1000000)
+      );
 
     currentOrder.sweets.push({
       cakeName: cake.name,
       quantity: quantity,
-      pricePerCake: cake.price,
+      pricePerCake: cake.promoPrice ?? cake.price,
       totalPrice: cake.price * quantity,
     });
-    localStorage.setItem("order", JSON.stringify(currentOrder));
+
+    OrderApi.getInstance().updateCurrentOrder(currentOrder);
+
     setMessage("Proizvod je dodat u korpu!");
+  };
+
+  const addComment = (rating: number, text: string): void => {
+    const currentUser = UserApi.getInstance().LogedUser;
+    cake.comments.push({
+      rating: rating,
+      text: text,
+      username: currentUser.username,
+    });
+    CakeApi.getInstance().updateCake(cake);
+    // reload the page
+    window.location.reload();
+  };
+
+  const removePromoPrice = () => {
+    cake.promoPrice = undefined;
+    CakeApi.getInstance().updateCake(cake);
+    setMessage("Promocija je uklonjena!");
+  };
+
+  const addPromoPrice = () => {
+    cake.promoPrice = newPrice;
+    CakeApi.getInstance().updateCake(cake);
+    // reload the page
+    window.location.reload();
   };
 
   return (
@@ -72,7 +108,7 @@ const Product = () => {
               ...cardStyle,
               backgroundColor: ColorTheme.COLOR_SECONDARY,
               width: "90%",
-              height: "50%",
+              height: "60%",
               marginTop: "7%",
             },
           }}
@@ -142,47 +178,96 @@ const Product = () => {
                   },
                 }}
               >
-                {price} RSD
+                {UserApi.getInstance().LogedUser.role === "admin"
+                  ? price
+                  : promoPrice ?? price}{" "}
+                RSD
               </Label>
             </Stack>
-            <Stack
-              horizontal
-              tokens={{ childrenGap: "l1", padding: "l1" }}
-              verticalAlign="center"
-            >
-              <Label
-                styles={{
-                  root: {
-                    fontSize: "24px",
-                    color: ColorTheme.COLOR_TEXT,
-                  },
-                }}
+            {UserApi.getInstance().LogedUser.role === "admin" && (
+              <Stack
+                horizontal
+                tokens={{ childrenGap: "l1", padding: "l1" }}
+                verticalAlign="center"
               >
-                Količina:
-              </Label>
-              <SpinButton
-                value={quantity.toString()}
-                min={0}
-                max={100}
-                step={1}
-                onChange={(_, value) => setQuantity(parseInt(value))}
-                styles={{
-                  spinButtonWrapper: {
-                    backgroundColor: ColorTheme.COLOR_PRIMARY,
-                  },
-                  root: {
-                    width: "100px",
-                  },
-                }}
-              />
-              <PrimaryButton
-                text="Dodaj u korpu"
-                styles={{
-                  ...commonButtonStyles,
-                }}
-                onClick={() => addProductToCart(cake, quantity)}
-              />
-            </Stack>
+                <Label
+                  styles={{
+                    root: {
+                      fontSize: "24px",
+                      color: ColorTheme.COLOR_TEXT,
+                    },
+                  }}
+                >
+                  {promoPrice ? "Promo cena: " : "Nova cena: "}
+                </Label>
+                <SpinButton
+                  value={newPrice.toString()}
+                  min={0}
+                  max={1000000}
+                  step={10}
+                  onChange={(_, value) => setNewPrice(parseInt(value))}
+                  styles={{
+                    spinButtonWrapper: {
+                      backgroundColor: ColorTheme.COLOR_PRIMARY,
+                    },
+                    root: {
+                      width: "100px",
+                    },
+                  }}
+                  disabled={promoPrice !== undefined}
+                />
+
+                <PrimaryButton
+                  text={promoPrice ? "Poništi promociju" : "Kreiraj promociju"}
+                  styles={{
+                    ...commonButtonStyles,
+                  }}
+                  onClick={() =>
+                    promoPrice ? removePromoPrice() : addPromoPrice()
+                  }
+                />
+              </Stack>
+            )}
+            {UserApi.getInstance().LogedUser.role !== "admin" && (
+              <Stack
+                horizontal
+                tokens={{ childrenGap: "l1", padding: "l1" }}
+                verticalAlign="center"
+              >
+                <Label
+                  styles={{
+                    root: {
+                      fontSize: "24px",
+                      color: ColorTheme.COLOR_TEXT,
+                    },
+                  }}
+                >
+                  Količina:
+                </Label>
+                <SpinButton
+                  value={quantity.toString()}
+                  min={0}
+                  max={100}
+                  step={1}
+                  onChange={(_, value) => setQuantity(parseInt(value))}
+                  styles={{
+                    spinButtonWrapper: {
+                      backgroundColor: ColorTheme.COLOR_PRIMARY,
+                    },
+                    root: {
+                      width: "100px",
+                    },
+                  }}
+                />
+                <PrimaryButton
+                  text="Dodaj u korpu"
+                  styles={{
+                    ...commonButtonStyles,
+                  }}
+                  onClick={() => addProductToCart(cake, quantity)}
+                />
+              </Stack>
+            )}
             {message.length > 0 && (
               <MessageBar
                 messageBarType={MessageBarType.success}
@@ -204,23 +289,15 @@ const Product = () => {
           horizontalAlign="center"
         >
           {cake.comments.filter(
-            (elem) =>
-              elem.username ===
-              (JSON.parse(localStorage.getItem("user")) as User).username
-          ).length === 0 && (
-            <NewComment
-              callback={function (rating: number, text: string): {} {
-                throw new Error("Function not implemented.");
-              }}
-            />
-          )}
+            (elem) => elem.username === UserApi.getInstance().LogedUser.username
+          ).length === 0 &&
+            UserApi.getInstance().LogedUser.role !== "admin" && (
+              <NewComment callback={addComment} />
+            )}
           {cake.comments
             .sort((a, b) => {
               // if a.username is equal to localstorage username, a should be first else they are same
-              if (
-                a.username ===
-                (JSON.parse(localStorage.getItem("user")) as User).username
-              )
+              if (a.username === UserApi.getInstance().LogedUser.username)
                 return -1;
               return 0;
             })

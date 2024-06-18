@@ -9,6 +9,7 @@ export class Order {
       pricePerCake: number;
       totalPrice: number;
     }[],
-    public status: string
+    public status: string,
+    public id: number
   ) {}
 }

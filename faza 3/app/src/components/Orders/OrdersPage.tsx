@@ -7,6 +7,7 @@ import {
   Stack,
 } from "@fluentui/react";
 import { useState } from "react";
+import { OrderApi } from "../../api/OrderApi";
 import { Order } from "../../models/Order";
 import {
   ColorTheme,
@@ -16,11 +17,15 @@ import {
 import Header from "../Header";
 
 export const OrdersPage = () => {
-  const orderString = localStorage.getItem("order");
-  const orderLocalStorage = orderString ? JSON.parse(orderString) : undefined;
-
-  const [order, setOrder] = useState<Order | undefined>(orderLocalStorage);
+  const [order, setOrder] = useState<Order | undefined>(
+    OrderApi.getInstance().getCurrentOrder()
+  );
   const [message, setMessage] = useState("");
+
+  const setOrderFull = (order: Order) => {
+    OrderApi.getInstance().updateCurrentOrder(order);
+    setOrder(order);
+  };
 
   const deleteProductFromCart = (index: number) => {
     let newOrder = {
@@ -30,18 +35,15 @@ export const OrdersPage = () => {
     if (newOrder.sweets.length === 0) {
       newOrder = undefined;
     }
-    setOrder(newOrder);
+    setOrderFull(newOrder);
     newOrder
       ? localStorage.setItem("order", JSON.stringify(newOrder))
       : localStorage.removeItem("order");
   };
 
   const addOrderToGlobalOrder = (order: Order) => {
-    const ordersString = localStorage.getItem("orders");
-    const orders = ordersString ? JSON.parse(ordersString) : [];
-    orders.push(order);
-    localStorage.setItem("orders", JSON.stringify(orders));
-    setOrder(undefined);
+    OrderApi.getInstance().addOrder(order);
+    setOrderFull(undefined);
     localStorage.removeItem("order");
     setMessage("Narudžbina je poslata!");
   };

@@ -19,6 +19,7 @@ export class Cake {
   price: number;
   composition: string;
   comments: CakeComment[];
+  promoPrice?: number;
 
   constructor(
     id: number,

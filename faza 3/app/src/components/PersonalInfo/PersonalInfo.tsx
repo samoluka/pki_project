@@ -10,8 +10,6 @@ import {
 import { useState } from "react";
 import { UserApi } from "../../api/UserApi";
 import {
-  AppFontFamily,
-  AppName,
   ColorTheme,
   cardStyle,
   commonButtonStyles,
@@ -19,9 +17,8 @@ import {
 import Header from "../Header";
 
 const PersonalInfo = () => {
-  const { firstName, lastName, username, phoneNumber, address } = JSON.parse(
-    localStorage.getItem("user")
-  );
+  const { firstName, lastName, username, phoneNumber, address } =
+    UserApi.getInstance().LogedUser;
 
   // create state from local storage
   const [user, setUser] = useState({
@@ -63,12 +60,11 @@ const PersonalInfo = () => {
           styles={{
             root: {
               color: ColorTheme.COLOR_TEXT,
-              fontFamily: `${AppFontFamily}`,
-              fontSize: "80px",
+              fontSize: "40px",
             },
           }}
         >
-          {AppName}
+          Lične informacije
         </Label>
         <Stack
           horizontalAlign="center"
@@ -160,7 +156,7 @@ const PersonalInfo = () => {
             }}
             onClick={() => {
               // save changes in localstorage and in UserApi
-              const storedUser = JSON.parse(localStorage.getItem("user"));
+              const storedUser = UserApi.getInstance().LogedUser;
               const updatedUser = {
                 ...storedUser,
                 firstName: user.firstName,
@@ -170,7 +166,7 @@ const PersonalInfo = () => {
               };
               console.log("updatedUser", updatedUser);
               localStorage.setItem("user", JSON.stringify(updatedUser));
-              UserApi.updateUser(updatedUser);
+              UserApi.getInstance().updateUser(updatedUser);
               setMessage("Uspešno ste sačuvali promene!");
             }}
           />
