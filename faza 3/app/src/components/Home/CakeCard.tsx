@@ -20,6 +20,10 @@ const CakeCard = (props: ICakeCardProps) => {
           height: "500px",
           backgroundColor: ColorTheme.COLOR_SECONDARY,
           ...cardStyle,
+          // if it is mobile, make it smaller
+          "@media (max-width: 600px)": {
+            height: "400px",
+          },
         },
       }}
       tokens={{ padding: "l1" }}

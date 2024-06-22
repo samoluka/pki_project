@@ -15,7 +15,7 @@ import {
   cardStyle,
   commonButtonStyles,
 } from "../../shared/Constants";
-import Header from "../Header";
+import Header from "../Header/Header";
 
 const NewProduct = () => {
   const [productName, setProductName] = useState("");

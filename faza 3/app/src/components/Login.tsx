@@ -50,6 +50,13 @@ const Login = () => {
           height: "600px",
           backgroundColor: ColorTheme.COLOR_SECONDARY,
           ...cardStyle,
+          "@media (max-width: 600px)": {
+            // This targets screens with a width of 600px or less
+            width: "100vw", // 100% of the viewport width
+            height: "100vh", // 100% of the viewport height
+            overflow: "auto", // Adds scroll if the content overflows the viewport
+            backgroundColor: "transparent",
+          },
         },
       }}
     >
@@ -59,6 +66,10 @@ const Login = () => {
             color: ColorTheme.COLOR_TEXT,
             fontFamily: `${AppFontFamily}`,
             fontSize: "80px",
+            // if screen is smaller than 600px, change font size
+            "@media (max-width: 600px)": {
+              fontSize: "50px",
+            },
           },
         }}
       >

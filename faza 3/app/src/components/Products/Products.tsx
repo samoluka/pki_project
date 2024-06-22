@@ -2,7 +2,7 @@ import { IconButton, Label, Stack } from "@fluentui/react";
 import { useState } from "react";
 import { CakeApi } from "../../api/CakeApi";
 import { ColorTheme } from "../../shared/Constants";
-import Header from "../Header";
+import Header from "../Header/Header";
 import { ProductCard } from "./ProductCard";
 
 export const Products = () => {

@@ -7,11 +7,11 @@ import {
   Stack,
   getTheme,
 } from "@fluentui/react";
-import { OrderApi } from "../api/OrderApi";
-import { UserApi } from "../api/UserApi";
-import { AppFontFamily, AppName, ColorTheme } from "../shared/Constants";
+import { OrderApi } from "../../api/OrderApi";
+import { UserApi } from "../../api/UserApi";
+import { AppFontFamily, AppName, ColorTheme } from "../../shared/Constants";
 
-const Header = () => {
+export const WebHeader = () => {
   const user = UserApi.getInstance().LogedUser;
 
   return (
@@ -211,5 +211,3 @@ const Header = () => {
     </Stack>
   );
 };
-
-export default Header;

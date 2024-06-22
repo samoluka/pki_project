@@ -1,4 +1,5 @@
 import {
+  Image,
   Label,
   MessageBar,
   MessageBarType,
@@ -6,7 +7,7 @@ import {
   SpinButton,
   Stack,
 } from "@fluentui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { CakeApi } from "../../api/CakeApi";
 import { OrderApi } from "../../api/OrderApi";
@@ -18,11 +19,24 @@ import {
   cardStyle,
   commonButtonStyles,
 } from "../../shared/Constants";
-import Header from "../Header";
+import Header from "../Header/Header";
 import { CommentStack } from "./Comment";
 import { NewComment } from "./NewComment";
 
 const Product = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   let { id } = useParams();
   const cake = CakeApi.getInstance().Cakes.find(
     (cake) => cake.id === parseInt(id)
@@ -102,6 +116,16 @@ const Product = () => {
         verticalAlign="start"
         horizontalAlign="center"
       >
+        {isMobile && (
+          <img
+            src={process.env.PUBLIC_URL + picture}
+            alt="cake"
+            style={{
+              width: "300px",
+              marginTop: "30%",
+            }}
+          />
+        )}
         <Stack
           styles={{
             root: {
@@ -114,19 +138,23 @@ const Product = () => {
           }}
           verticalAlign="center"
           horizontalAlign="space-evenly"
-          horizontal
+          horizontal={!isMobile}
         >
-          <Stack horizontalAlign="center" verticalAlign="center">
-            <img
-              src={process.env.PUBLIC_URL + picture}
-              alt="cake"
-              style={{
-                width: "600px",
-              }}
-            />
-          </Stack>
+          {!isMobile && (
+            <Stack horizontalAlign="center" verticalAlign="center">
+              <Image
+                src={process.env.PUBLIC_URL + picture}
+                alt="cake"
+                styles={{
+                  root: {
+                    width: "600px",
+                  },
+                }}
+              />
+            </Stack>
+          )}
           <Stack
-            tokens={{ childrenGap: "l1", padding: "l1" }}
+            tokens={{ childrenGap: isMobile ? "s1" : "l1", padding: "l1" }}
             horizontalAlign="center"
           >
             <Label
@@ -259,6 +287,19 @@ const Product = () => {
                     },
                   }}
                 />
+                {!isMobile && (
+                  <PrimaryButton
+                    text="Dodaj u korpu"
+                    styles={{
+                      ...commonButtonStyles,
+                    }}
+                    onClick={() => addProductToCart(cake, quantity)}
+                  />
+                )}
+              </Stack>
+            )}
+            {isMobile && (
+              <>
                 <PrimaryButton
                   text="Dodaj u korpu"
                   styles={{
@@ -266,7 +307,17 @@ const Product = () => {
                   }}
                   onClick={() => addProductToCart(cake, quantity)}
                 />
-              </Stack>
+                <PrimaryButton
+                  text="Komentari"
+                  styles={{
+                    ...commonButtonStyles,
+                  }}
+                  onClick={() => {
+                    // redirect to comments
+                    document.location.href = `/comments/${id}`;
+                  }}
+                />
+              </>
             )}
             {message.length > 0 && (
               <MessageBar
@@ -279,59 +330,62 @@ const Product = () => {
             )}
           </Stack>
         </Stack>
-        <Stack
-          styles={{
-            root: {
-              width: "60%",
-            },
-          }}
-          tokens={{ padding: "l1", childrenGap: "l1" }}
-          horizontalAlign="center"
-        >
-          {cake.comments.filter(
-            (elem) => elem.username === UserApi.getInstance().LogedUser.username
-          ).length === 0 &&
-            UserApi.getInstance().LogedUser.role !== "admin" && (
-              <NewComment callback={addComment} />
-            )}
-          {cake.comments
-            .sort((a, b) => {
-              // if a.username is equal to localstorage username, a should be first else they are same
-              if (a.username === UserApi.getInstance().LogedUser.username)
-                return -1;
-              return 0;
-            })
-            .map((_, index) =>
-              index % 2 === 0 ? (
-                <Stack
-                  key={index}
-                  horizontal
-                  styles={{
-                    root: {
-                      width: "100%",
-                      height: "100%",
-                    },
-                  }}
-                  horizontalAlign="space-evenly"
-                >
-                  <CommentStack
-                    text={cake.comments[index].text}
-                    rating={cake.comments[index].rating}
-                    username={cake.comments[index].username}
-                  />
-                  {index + 1 < cake.comments.length && (
+        {!isMobile && (
+          <Stack
+            styles={{
+              root: {
+                width: "60%",
+              },
+            }}
+            tokens={{ padding: "l1", childrenGap: "l1" }}
+            horizontalAlign="center"
+          >
+            {cake.comments.filter(
+              (elem) =>
+                elem.username === UserApi.getInstance().LogedUser.username
+            ).length === 0 &&
+              UserApi.getInstance().LogedUser.role !== "admin" && (
+                <NewComment callback={addComment} />
+              )}
+            {cake.comments
+              .sort((a, b) => {
+                // if a.username is equal to localstorage username, a should be first else they are same
+                if (a.username === UserApi.getInstance().LogedUser.username)
+                  return -1;
+                return 0;
+              })
+              .map((_, index) =>
+                index % 2 === 0 ? (
+                  <Stack
+                    key={index}
+                    horizontal
+                    styles={{
+                      root: {
+                        width: "100%",
+                        height: "100%",
+                      },
+                    }}
+                    horizontalAlign="space-evenly"
+                  >
                     <CommentStack
-                      text={cake.comments[index + 1].text}
-                      rating={cake.comments[index + 1].rating}
-                      username={cake.comments[index + 1].username}
+                      text={cake.comments[index].text}
+                      rating={cake.comments[index].rating}
+                      username={cake.comments[index].username}
                     />
-                  )}
-                </Stack>
-              ) : (
-                <></>
-              )
-            )}
-        </Stack>
+                    {index + 1 < cake.comments.length && (
+                      <CommentStack
+                        text={cake.comments[index + 1].text}
+                        rating={cake.comments[index + 1].rating}
+                        username={cake.comments[index + 1].username}
+                      />
+                    )}
+                  </Stack>
+                ) : (
+                  <></>
+                )
+              )}
+          </Stack>
+        )}
       </Stack>
     </Stack>
   );

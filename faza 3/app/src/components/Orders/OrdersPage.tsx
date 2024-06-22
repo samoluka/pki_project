@@ -14,7 +14,7 @@ import {
   cardStyle,
   commonButtonStyles,
 } from "../../shared/Constants";
-import Header from "../Header";
+import Header from "../Header/Header";
 
 export const OrdersPage = () => {
   const [order, setOrder] = useState<Order | undefined>(
@@ -66,6 +66,10 @@ export const OrdersPage = () => {
             width: "100%",
             overflowY: "auto", // Add scrolling to the stack
             marginTop: "7%",
+            // add 25% padding if it is mobile
+            "@media (max-width: 600px)": {
+              paddingTop: "20%",
+            },
           },
         }}
         verticalAlign="start"
@@ -90,6 +94,10 @@ export const OrdersPage = () => {
           styles={{
             root: {
               fontSize: "x-large",
+              // if it is mobile, make it smaller
+              "@media (max-width: 600px)": {
+                fontSize: "large",
+              },
             },
           }}
         >
@@ -111,6 +119,9 @@ export const OrdersPage = () => {
               styles={{
                 root: {
                   fontSize: "large",
+                  "@media (max-width: 600px)": {
+                    fontSize: "small",
+                  },
                 },
               }}
             >
@@ -145,6 +156,9 @@ export const OrdersPage = () => {
             styles={{
               root: {
                 fontSize: "large",
+                "@media (max-width: 600px)": {
+                  fontSize: "small",
+                },
               },
             }}
           >
@@ -154,6 +168,9 @@ export const OrdersPage = () => {
             styles={{
               root: {
                 fontSize: "large",
+                "@media (max-width: 600px)": {
+                  fontSize: "small",
+                },
               },
             }}
           >
@@ -163,6 +180,9 @@ export const OrdersPage = () => {
             styles={{
               root: {
                 fontSize: "large",
+                "@media (max-width: 600px)": {
+                  fontSize: "small",
+                },
               },
             }}
           >
@@ -172,6 +192,9 @@ export const OrdersPage = () => {
             styles={{
               root: {
                 fontSize: "large",
+                "@media (max-width: 600px)": {
+                  fontSize: "small",
+                },
               },
             }}
           >
@@ -201,6 +224,9 @@ export const OrdersPage = () => {
                   styles={{
                     root: {
                       fontSize: "large",
+                      "@media (max-width: 600px)": {
+                        fontSize: "small",
+                      },
                     },
                   }}
                 >
@@ -210,6 +236,9 @@ export const OrdersPage = () => {
                   styles={{
                     root: {
                       fontSize: "large",
+                      "@media (max-width: 600px)": {
+                        fontSize: "small",
+                      },
                     },
                   }}
                 >
@@ -219,6 +248,9 @@ export const OrdersPage = () => {
                   styles={{
                     root: {
                       fontSize: "large",
+                      "@media (max-width: 600px)": {
+                        fontSize: "small",
+                      },
                     },
                   }}
                 >
@@ -228,6 +260,9 @@ export const OrdersPage = () => {
                   styles={{
                     root: {
                       fontSize: "large",
+                      "@media (max-width: 600px)": {
+                        fontSize: "small",
+                      },
                     },
                   }}
                 >
@@ -275,6 +310,9 @@ export const OrdersPage = () => {
               styles={{
                 root: {
                   fontSize: "large",
+                  "@media (max-width: 600px)": {
+                    fontSize: "small",
+                  },
                 },
               }}
             >

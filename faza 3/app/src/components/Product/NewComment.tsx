@@ -14,6 +14,7 @@ import {
 
 export const NewComment = (props: {
   callback: (rating: number, text: string) => void;
+  isMobile?: boolean;
 }) => {
   const [rating, setRating] = useState(3);
   const [text, setText] = useState("");
@@ -26,12 +27,17 @@ export const NewComment = (props: {
           ...cardStyle,
           width: "700px",
           height: "150px",
+          // if it is mobile, make it transparent and full screen
+          "@media (max-width: 600px)": {
+            width: "300px",
+            height: "fit-content",
+          },
         },
       }}
       tokens={{ padding: "l1", childrenGap: "l1" }}
       horizontalAlign="center"
       verticalAlign="center"
-      horizontal
+      horizontal={!props.isMobile}
     >
       <TextField
         label="Komentar:"

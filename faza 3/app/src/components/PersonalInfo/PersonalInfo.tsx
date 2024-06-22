@@ -14,7 +14,7 @@ import {
   cardStyle,
   commonButtonStyles,
 } from "../../shared/Constants";
-import Header from "../Header";
+import Header from "../Header/Header";
 
 const PersonalInfo = () => {
   const { firstName, lastName, username, phoneNumber, address } =
@@ -53,6 +53,13 @@ const PersonalInfo = () => {
             marginTop: "7%",
             backgroundColor: ColorTheme.COLOR_SECONDARY,
             ...cardStyle,
+            // if it is mobile, make it transparent and full screen
+            "@media (max-width: 600px)": {
+              width: "100vw",
+              height: "100vh",
+              overflow: "auto",
+              backgroundColor: "transparent",
+            },
           },
         }}
       >
