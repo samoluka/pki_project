@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ColorTheme } from "../../shared/Constants";
 import Home from "../Home/Home";
 import Login from "../Login";
-import { OrdersPage } from "../Orders/OrdersPage";
+import { OrdersReview } from "../Orders/OrdersReview";
 import ChangePassword from "../PersonalInfo/ChangePassword";
 import PersonalInfo from "../PersonalInfo/PersonalInfo";
 import NewProduct from "../Product/NewProduct";
@@ -34,7 +34,7 @@ const AdminApp = () => {
           <Route path="/personal-info" element={<PersonalInfo />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/order" element={<OrdersPage />} />
+          <Route path="/order" element={<OrdersReview />} />
           <Route path="change-password" element={<ChangePassword />} />
         </Routes>
       </Stack>

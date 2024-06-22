@@ -70,4 +70,8 @@ export class UserApi {
   public async register(user: User) {
     this.allUsers.push(user);
   }
+
+  public getAllUsers() {
+    return this.allUsers;
+  }
 }

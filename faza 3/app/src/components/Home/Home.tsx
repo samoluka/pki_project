@@ -35,8 +35,8 @@ const Home = () => {
       <Header />
       <Stack
         horizontal={!isMobile}
-        horizontalAlign={isMobile ? "center" : "space-between"}
-        verticalAlign={isMobile ? "center" : "start"}
+        horizontalAlign={isMobile ? "center" : "space-evenly"}
+        verticalAlign={"center"}
         styles={{
           root: {
             width: "100%",

@@ -1,3 +1,4 @@
+import orders from "../data/orders.json";
 import { Order } from "../models/Order";
 
 export class OrderApi {
@@ -14,7 +15,7 @@ export class OrderApi {
     if (ordersString) {
       this.allOrders = JSON.parse(ordersString);
     } else {
-      this.allOrders = [];
+      this.allOrders = orders;
       localStorage.setItem("orders", JSON.stringify(this.allOrders));
     }
   }
@@ -36,7 +37,35 @@ export class OrderApi {
     localStorage.removeItem("order");
   }
 
+  public acceptOrder(order: Order) {
+    const index = this.allOrders.findIndex((o) => o.id === order.id);
+    if (index !== -1) {
+      this.allOrders[index].status = "Prihvaćena";
+      localStorage.setItem("orders", JSON.stringify(this.allOrders));
+    }
+  }
+
+  public declineOrder(order: Order) {
+    const index = this.allOrders.findIndex((o) => o.id === order.id);
+    if (index !== -1) {
+      this.allOrders[index].status = "Odbijena";
+      localStorage.setItem("orders", JSON.stringify(this.allOrders));
+    }
+  }
+
+  public deleteOrder(order: Order) {
+    const index = this.allOrders.findIndex((o) => o.id === order.id);
+    if (index !== -1) {
+      this.allOrders.splice(index, 1);
+      localStorage.setItem("orders", JSON.stringify(this.allOrders));
+    }
+  }
+
   public getAllOrdersForUser(username: string) {
     return this.allOrders.filter((order) => order.username === username);
+  }
+
+  public getAllOrders() {
+    return this.allOrders;
   }
 }

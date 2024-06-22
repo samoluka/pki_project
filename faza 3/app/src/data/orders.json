@@ -1,0 +1,114 @@
+[
+  {
+    "username": "user1",
+    "sweets": [
+      {
+        "cakeName": "Cake 1",
+        "quantity": 1,
+        "pricePerCake": 10.99,
+        "totalPrice": 10.99
+      },
+      {
+        "cakeName": "Cake 7",
+        "quantity": 1,
+        "pricePerCake": 11.99,
+        "totalPrice": 11.99
+      },
+      {
+        "cakeName": "Cake 8",
+        "quantity": 1,
+        "pricePerCake": 13.99,
+        "totalPrice": 13.99
+      },
+      {
+        "cakeName": "Cake 1",
+        "quantity": 1,
+        "pricePerCake": 10.99,
+        "totalPrice": 10.99
+      },
+      {
+        "cakeName": "Cake 3",
+        "quantity": 5,
+        "pricePerCake": 1000,
+        "totalPrice": 64.95
+      },
+      {
+        "cakeName": "Cake 5",
+        "quantity": 6,
+        "pricePerCake": 9.99,
+        "totalPrice": 59.94
+      }
+    ],
+    "status": "In progress",
+    "id": 989430
+  },
+  {
+    "username": "user1",
+    "sweets": [
+      {
+        "cakeName": "Cake 2",
+        "quantity": 1,
+        "pricePerCake": 8.99,
+        "totalPrice": 8.99
+      },
+      {
+        "cakeName": "Cake 8",
+        "quantity": 1,
+        "pricePerCake": 13.99,
+        "totalPrice": 13.99
+      }
+    ],
+    "status": "In progress",
+    "id": 481628
+  },
+  {
+    "username": "user1",
+    "sweets": [
+      {
+        "cakeName": "Cake 8",
+        "quantity": 1,
+        "pricePerCake": 13.99,
+        "totalPrice": 13.99
+      },
+      {
+        "cakeName": "Cake 6",
+        "quantity": 1,
+        "pricePerCake": 7.99,
+        "totalPrice": 7.99
+      },
+      {
+        "cakeName": "Cake 7",
+        "quantity": 1,
+        "pricePerCake": 11.99,
+        "totalPrice": 11.99
+      }
+    ],
+    "status": "In progress",
+    "id": 440242
+  },
+  {
+    "username": "user1",
+    "sweets": [
+      {
+        "cakeName": "Cake 1",
+        "quantity": 1,
+        "pricePerCake": 10.99,
+        "totalPrice": 10.99
+      },
+      {
+        "cakeName": "Cake 7",
+        "quantity": 1,
+        "pricePerCake": 11.99,
+        "totalPrice": 11.99
+      },
+      {
+        "cakeName": "Cake 8",
+        "quantity": 1,
+        "pricePerCake": 13.99,
+        "totalPrice": 13.99
+      }
+    ],
+    "status": "In progress",
+    "id": 60650
+  }
+]
