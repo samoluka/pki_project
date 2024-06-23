@@ -8,7 +8,7 @@ import CakeCard from "./CakeCard";
 const Home = () => {
   const [indexLeft, setIndexLeft] = useState(0);
 
-  const cakes = CakeApi.getInstance().Cakes;
+  const cakes = CakeApi.getInstance().Cakes.filter((cake) => cake.promoPrice);
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
@@ -36,7 +36,7 @@ const Home = () => {
       <Stack
         horizontal={!isMobile}
         horizontalAlign={isMobile ? "center" : "space-evenly"}
-        verticalAlign={"center"}
+        verticalAlign={isMobile ? "start" : "center"}
         styles={{
           root: {
             width: "100%",
@@ -118,8 +118,7 @@ const Home = () => {
             tokens={{ childrenGap: "l1" }}
             styles={{
               root: {
-                // todo: debug this margin
-                marginTop: "4000px",
+                paddingTop: "20%",
               },
             }}
             horizontalAlign="center"

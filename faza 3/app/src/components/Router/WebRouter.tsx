@@ -4,6 +4,7 @@ import { ColorTheme } from "../../shared/Constants";
 import Home from "../Home/Home";
 import Login from "../Login";
 import { OrdersPage } from "../Orders/OrdersPage";
+import { UserSingleOrderView } from "../Orders/UserSingleOrderView";
 import ChangePassword from "../PersonalInfo/ChangePassword";
 import PersonalInfo from "../PersonalInfo/PersonalInfo";
 import Product from "../Product/Product";
@@ -33,6 +34,7 @@ export const WebRouter = () => {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/products" element={<Products />} />
           <Route path="/order" element={<OrdersPage />} />
+          <Route path="/order/:id" element={<UserSingleOrderView />} />
           <Route path="change-password" element={<ChangePassword />} />
         </Routes>
       </Stack>

@@ -202,6 +202,10 @@ export const WebHeader = () => {
                   return {
                     key: order.id.toString(),
                     text: `Porudzbina ${order.id}: ${order.status}`,
+                    onClick: () => {
+                      // redirect to change password
+                      document.location.href = `/order/${order.id}`;
+                    },
                   };
                 }),
             }}
