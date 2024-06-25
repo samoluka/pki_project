@@ -2,193 +2,210 @@
   {
     "id": 1,
     "type": "torta",
-    "picture": "/images/cakePhoto1.png",
-    "name": "Cake 1",
-    "description": "Delicious chocolate cake",
-    "price": 10.99,
-    "composition": "Chocolate, flour, sugar, eggs",
+    "name": "Čokoladna torta",
+    "picture": "images/chocolate_cake.jpg",
+    "description": "Bogata čokoladna torta sa tri sloja.",
+    "price": 2000,
+    "composition": "Čokolada, brašno, jaja, šećer, maslac",
     "comments": [
       {
-        "username": "user3",
         "rating": 5,
-        "text": "This cake is amazing!"
+        "text": "Preukusna torta!",
+        "username": "Marija"
       },
       {
-        "username": "user34",
         "rating": 4,
-        "text": "Great taste, highly recommended"
-      },
-      {
-        "username": "user12",
-        "rating": 2,
-        "text": "Not impressed with this cake"
-      },
-      {
-        "username": "user7",
-        "rating": 5,
-        "text": "Absolutely delicious!"
-      },
-      {
-        "username": "user18",
-        "rating": 3,
-        "text": "Average cake, nothing special"
-      },
-      {
-        "username": "user22",
-        "rating": 4,
-        "text": "Great value for the price"
-      },
-      {
-        "username": "user11",
-        "rating": 5,
-        "text": "Highly recommended, will definitely order again"
+        "text": "Malo preslatka, ali dobra.",
+        "username": "Ivan"
       }
     ]
   },
   {
     "id": 2,
-    "type": "torta",
-    "name": "Cake 2",
-    "picture": "/images/cakePhoto1.png",
-    "description": "Vanilla sponge cake",
-    "price": 8.99,
-    "composition": "Vanilla, flour, sugar, eggs",
+    "type": "kolac",
+    "name": "Vanilin kolač",
+    "picture": "images/vanilla_cake.jpg",
+    "description": "Lagani vanilin kolač sa kremom.",
+    "price": 1500,
+    "composition": "Vanila, brašno, jaja, šećer, mleko",
     "comments": [
       {
-        "username": "user3",
         "rating": 4,
-        "text": "Light and fluffy, loved it!"
+        "text": "Odličan kolač za svaku priliku.",
+        "username": "Ana"
       },
       {
-        "username": "user1",
-        "rating": 3,
-        "text": "Decent cake, could be better"
+        "rating": 5,
+        "text": "Savršen ukus vanile!",
+        "username": "Marko"
       }
     ]
   },
   {
     "id": 3,
     "type": "torta",
-    "name": "Cake 3",
-    "picture": "/images/cakePhoto1.png",
-    "description": "Torta sa malinama",
-    "price": 12.99,
-    "composition": "Maline, brasno, secer, jaja",
+    "name": "Voćna torta",
+    "picture": "images/fruit_cake.jpg",
+    "description": "Osvežavajuća voćna torta sa sezonskim voćem.",
+    "price": 2200,
+    "composition": "Voće, brašno, jaja, šećer, maslac",
     "comments": [
       {
-        "username": "user5",
         "rating": 5,
-        "text": "Najbolja torta koju sam ikada probao!"
+        "text": "Najbolja voćna torta ikada!",
+        "username": "Sanja"
       },
       {
-        "username": "user6",
         "rating": 4,
-        "text": "Odlican ukus, toplo preporucujem"
+        "text": "Vrlo ukusna, ali malo skupa.",
+        "username": "Nikola"
       }
     ]
   },
   {
     "id": 4,
     "type": "kolac",
-    "name": "Cake 4",
-    "picture": "/images/cakePhoto1.png",
-    "description": "Čokoladna torta sa lešnicima",
-    "price": 14.99,
-    "composition": "Čokolada, lešnici, brašno, šećer, jaja",
+    "name": "Cheesecake",
+    "picture": "images/cheesecake.jpg",
+    "description": "Klasični cheesecake sa voćnim prelivom.",
+    "price": 1800,
+    "composition": "Krem sir, keks, šećer, voće",
     "comments": [
       {
-        "username": "user4",
         "rating": 5,
-        "text": "Fantastična kombinacija čokolade i lešnika!"
+        "text": "Savršen balans ukusa.",
+        "username": "Jelena"
       },
       {
-        "username": "user8",
-        "rating": 3,
-        "text": "Dobra torta, ali mogla bi biti slađa"
+        "rating": 5,
+        "text": "Obožavam cheesecake!",
+        "username": "Milan"
       }
     ]
   },
   {
     "id": 5,
     "type": "torta",
-    "name": "Cake 5",
-    "picture": "/images/cakePhoto1.png",
-    "description": "Voćna torta",
-    "price": 9.99,
-    "composition": "Voće, brašno, šećer, jaja",
+    "name": "Tiramisu",
+    "picture": "images/tiramisu.jpg",
+    "description": "Italijanska torta sa maskarpone sirom i kafom.",
+    "price": 2100,
+    "composition": "Maskarpone, jaja, kava, kakao, šećer, piškote",
     "comments": [
       {
-        "username": "user9",
-        "rating": 4,
-        "text": "Osvežavajuća torta, savršena za letnje dane"
+        "rating": 5,
+        "text": "Pravi italijanski tiramisu!",
+        "username": "Petar"
       },
       {
-        "username": "user10",
-        "rating": 5,
-        "text": "Preukusna kombinacija voća i kreme"
+        "rating": 4,
+        "text": "Odličan, ali bih voleo više kafe.",
+        "username": "Dusan"
       }
     ]
   },
   {
     "id": 6,
-    "type": "torta",
-    "name": "Cake 6",
-    "picture": "/images/cakePhoto1.png",
-    "description": "Štrudla sa jabukama",
-    "price": 7.99,
-    "composition": "Jabuke, cimet, šećer, testo",
+    "type": "kolac",
+    "name": "Lemon Cake",
+    "picture": "images/lemon_cake.jpg",
+    "description": "Osvježavajući kolač sa limunom.",
+    "price": 1600,
+    "composition": "Limun, brašno, jaja, šećer, maslac",
     "comments": [
       {
-        "username": "user13",
-        "rating": 5,
-        "text": "Najbolja štrudla koju sam ikada jeo!"
+        "rating": 4,
+        "text": "Ukusan i lagan.",
+        "username": "Tanja"
       },
       {
-        "username": "user14",
-        "rating": 4,
-        "text": "Divan miris i ukus, prava poslastica"
+        "rating": 5,
+        "text": "Odličan za letnje dane!",
+        "username": "Igor"
       }
     ]
   },
   {
     "id": 7,
-    "type": "kolac",
-    "name": "Cake 7",
-    "picture": "/images/cakePhoto1.png",
-    "description": "Krem pita sa vanilom",
-    "price": 11.99,
-    "composition": "Vanila, šećer, jaja, testo",
+    "type": "torta",
+    "name": "Kokos torta",
+    "picture": "images/coconut_cake.jpg",
+    "description": "Egzotična torta sa kokosom.",
+    "price": 2000,
+    "composition": "Kokos, brašno, jaja, šećer, mleko",
     "comments": [
       {
-        "username": "user15",
-        "rating": 4,
-        "text": "Kremasta i ukusna pita, savršena za desert"
+        "rating": 5,
+        "text": "Kokos raj!",
+        "username": "Mira"
       },
       {
-        "username": "user16",
-        "rating": 3,
-        "text": "Solidna pita, ali mogla bi biti slađa"
+        "rating": 4,
+        "text": "Malo preslatka, ali dobra.",
+        "username": "Svetlana"
       }
     ]
   },
   {
     "id": 8,
     "type": "kolac",
-    "name": "Cake 8",
-    "picture": "/images/cakePhoto1.png",
-    "description": "Čizkejk sa malinama",
-    "price": 13.99,
-    "composition": "Maline, krem sir, keks, šećer",
+    "name": "Brownie",
+    "picture": "images/brownie.jpg",
+    "description": "Čokoladni brownie sa orasima.",
+    "price": 1400,
+    "composition": "Čokolada, brašno, jaja, šećer, orasi",
     "comments": [
       {
-        "username": "user17",
         "rating": 5,
-        "text": "Najbolji čizkejk ikada!"
+        "text": "Najbolji brownie ikada!",
+        "username": "Aleksandar"
       },
       {
-        "username": "user19",
+        "rating": 5,
+        "text": "Savršeno čokoladno iskustvo.",
+        "username": "Nina"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "type": "torta",
+    "name": "Kafa torta",
+    "picture": "images/coffee_cake.jpg",
+    "description": "Torta sa ukusom kafe i čokolade.",
+    "price": 1900,
+    "composition": "Kafa, čokolada, brašno, jaja, šećer, maslac",
+    "comments": [
+      {
+        "rating": 5,
+        "text": "Za ljubitelje kafe, savršeno!",
+        "username": "Milica"
+      },
+      {
         "rating": 4,
-        "text": "Preukusna kombinacija malina i krekera"
+        "text": "Malo jaka, ali dobra.",
+        "username": "Vladimir"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "type": "kolac",
+    "name": "Carrot Cake",
+    "picture": "images/carrot_cake.jpg",
+    "description": "Kolač sa šargarepom i krem sirom.",
+    "price": 1700,
+    "composition": "Šargarepa, brašno, jaja, šećer, krem sir",
+    "comments": [
+      {
+        "rating": 5,
+        "text": "Iznenađujuće ukusan!",
+        "username": "Jovana"
+      },
+      {
+        "rating": 4,
+        "text": "Moglo bi biti više krem sira.",
+        "username": "Milos"
       }
     ]
   }

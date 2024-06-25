@@ -22,7 +22,7 @@ export const ProductCard = (props: { product: Cake }) => {
         src={process.env.PUBLIC_URL + product.picture}
         alt="cake"
         style={{
-          width: "250px",
+          height: "150px",
         }}
         onClick={() => {
           document.location.href = "/product/" + product.id;

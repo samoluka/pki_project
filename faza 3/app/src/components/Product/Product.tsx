@@ -1,5 +1,4 @@
 import {
-  Image,
   Label,
   MessageBar,
   MessageBarType,
@@ -142,13 +141,11 @@ const Product = () => {
         >
           {!isMobile && (
             <Stack horizontalAlign="center" verticalAlign="center">
-              <Image
-                src={process.env.PUBLIC_URL + picture}
+              <img
+                src={"../" + process.env.PUBLIC_URL + picture}
                 alt="cake"
-                styles={{
-                  root: {
-                    width: "600px",
-                  },
+                style={{
+                  height: "300px",
                 }}
               />
             </Stack>
