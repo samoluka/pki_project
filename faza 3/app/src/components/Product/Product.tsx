@@ -109,11 +109,13 @@ const Product = () => {
         styles={{
           root: {
             width: "100%",
+            height: "100%",
             overflowY: "auto", // Add scrolling to the stack
           },
         }}
         verticalAlign="start"
         horizontalAlign="center"
+        tokens={{ padding: "s1" }}
       >
         {isMobile && (
           <img

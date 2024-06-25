@@ -38,13 +38,14 @@ export const MobileComments = () => {
         styles={{
           root: {
             width: "100%",
+            height: "100%",
             overflowY: "auto", // Add scrolling to the stack
             paddingTop: "25%",
           },
         }}
         verticalAlign="start"
         horizontalAlign="center"
-        tokens={{ childrenGap: "s1" }}
+        tokens={{ childrenGap: "s1", padding: "s1" }}
       >
         <Label styles={{ root: { fontSize: "x-large" } }}>{cake.name}</Label>
         {cake.comments.filter(
