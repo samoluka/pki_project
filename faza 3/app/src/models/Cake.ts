@@ -29,7 +29,8 @@ export class Cake {
     description: string,
     price: number,
     composition: string,
-    comments: CakeComment[]
+    comments: CakeComment[],
+    promoPrice?: number
   ) {
     this.type = type;
     this.id = id;
@@ -39,5 +40,6 @@ export class Cake {
     this.price = price;
     this.composition = composition;
     this.comments = comments;
+    this.promoPrice = promoPrice;
   }
 }

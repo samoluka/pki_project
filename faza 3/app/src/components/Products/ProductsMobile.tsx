@@ -57,7 +57,7 @@ export const ProductsMobile = () => {
           </Label>
           {cakes.map((cake) => (
             <CakeCard
-              imageUrl={process.env.PUBLIC_URL + cake.picture}
+              imageUrl={"../" + process.env.PUBLIC_URL + cake.picture}
               title={cake.name}
               description={cake.description}
               id={cake.id}

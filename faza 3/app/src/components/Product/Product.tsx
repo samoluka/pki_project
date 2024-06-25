@@ -117,10 +117,10 @@ const Product = () => {
       >
         {isMobile && (
           <img
-            src={process.env.PUBLIC_URL + picture}
+            src={"../" + process.env.PUBLIC_URL + picture}
             alt="cake"
             style={{
-              width: "300px",
+              height: "200px",
               marginTop: "30%",
             }}
           />
@@ -157,7 +157,7 @@ const Product = () => {
             <Label
               styles={{
                 root: {
-                  fontSize: "56px",
+                  fontSize: isMobile ? "xx-large" : "56px",
                   color: ColorTheme.COLOR_TEXT,
                 },
               }}
@@ -167,7 +167,7 @@ const Product = () => {
             <Label
               styles={{
                 root: {
-                  fontSize: "24px",
+                  fontSize: isMobile ? "large" : "24px",
                   color: ColorTheme.COLOR_TEXT,
                 },
               }}
@@ -177,7 +177,7 @@ const Product = () => {
             <Label
               styles={{
                 root: {
-                  fontSize: "16px",
+                  fontSize: isMobile ? "normal" : "16px",
                   color: ColorTheme.COLOR_TEXT,
                 },
               }}
@@ -193,12 +193,12 @@ const Product = () => {
                   height: "fit-content",
                 },
               }}
-              tokens={{ childrenGap: "l1", padding: "l1" }}
+              tokens={{ childrenGap: isMobile ? "s1" : "l1", padding: "s1" }}
             >
               <Label
                 styles={{
                   root: {
-                    fontSize: "24px",
+                    fontSize: isMobile ? "large" : "24px",
                     color: ColorTheme.COLOR_TEXT,
                   },
                 }}
@@ -262,7 +262,7 @@ const Product = () => {
                 <Label
                   styles={{
                     root: {
-                      fontSize: "24px",
+                      fontSize: isMobile ? "large" : "24px",
                       color: ColorTheme.COLOR_TEXT,
                     },
                   }}

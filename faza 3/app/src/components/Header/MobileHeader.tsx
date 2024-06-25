@@ -84,6 +84,9 @@ export const MobileHeader = () => {
           header: {
             backgroundColor: ColorTheme.COLOR_SECONDARY,
           },
+          commands: {
+            backgroundColor: ColorTheme.COLOR_SECONDARY,
+          },
         }}
       >
         <Stack tokens={{ childrenGap: "l1", padding: "l1" }}>

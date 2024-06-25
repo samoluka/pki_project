@@ -28,6 +28,7 @@
     "description": "Lagani vanilin kolač sa kremom.",
     "price": 1500,
     "composition": "Vanila, brašno, jaja, šećer, mleko",
+    "promoPrice": 1000,
     "comments": [
       {
         "rating": 4,
@@ -70,6 +71,7 @@
     "description": "Klasični cheesecake sa voćnim prelivom.",
     "price": 1800,
     "composition": "Krem sir, keks, šećer, voće",
+    "promoPrice": 1500,
     "comments": [
       {
         "rating": 5,
@@ -132,6 +134,7 @@
     "picture": "images/coconut_cake.jpg",
     "description": "Egzotična torta sa kokosom.",
     "price": 2000,
+    "promoPrice": 1800,
     "composition": "Kokos, brašno, jaja, šećer, mleko",
     "comments": [
       {
@@ -153,6 +156,7 @@
     "picture": "images/brownie.jpg",
     "description": "Čokoladni brownie sa orasima.",
     "price": 1400,
+    "promoPrice": 1000,
     "composition": "Čokolada, brašno, jaja, šećer, orasi",
     "comments": [
       {
