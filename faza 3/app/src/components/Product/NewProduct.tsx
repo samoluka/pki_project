@@ -133,6 +133,12 @@ const NewProduct = () => {
                 ...commonButtonStyles.root,
                 width: "200px",
               },
+              rootHovered: {
+                ...commonButtonStyles.rootHovered,
+              },
+              rootPressed: {
+                ...commonButtonStyles.rootPressed,
+              },
             }}
             onClick={() => document.getElementById("file-upload")?.click()}
           >

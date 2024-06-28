@@ -290,7 +290,12 @@ const Product = () => {
                   <PrimaryButton
                     text="Dodaj u korpu"
                     styles={{
-                      ...commonButtonStyles,
+                      root: {
+                        ...commonButtonStyles.root,
+                        width: "200px",
+                      },
+                      ...commonButtonStyles.rootHovered,
+                      ...commonButtonStyles.rootPressed,
                     }}
                     onClick={() => addProductToCart(cake, quantity)}
                   />
@@ -302,14 +307,32 @@ const Product = () => {
                 <PrimaryButton
                   text="Dodaj u korpu"
                   styles={{
-                    ...commonButtonStyles,
+                    root: {
+                      ...commonButtonStyles.root,
+                      width: "200px",
+                    },
+                    rootHovered: {
+                      ...commonButtonStyles.rootHovered,
+                    },
+                    rootPressed: {
+                      ...commonButtonStyles.rootPressed,
+                    },
                   }}
                   onClick={() => addProductToCart(cake, quantity)}
                 />
                 <PrimaryButton
                   text="Komentari"
                   styles={{
-                    ...commonButtonStyles,
+                    root: {
+                      ...commonButtonStyles.root,
+                      width: "200px",
+                    },
+                    rootHovered: {
+                      ...commonButtonStyles.rootHovered,
+                    },
+                    rootPressed: {
+                      ...commonButtonStyles.rootPressed,
+                    },
                   }}
                   onClick={() => {
                     // redirect to comments
