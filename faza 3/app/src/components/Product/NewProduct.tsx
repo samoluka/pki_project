@@ -64,13 +64,14 @@ const NewProduct = () => {
             marginTop: "7%",
             backgroundColor: ColorTheme.COLOR_SECONDARY,
             ...cardStyle,
+            overflow: "auto",
           },
         }}
       >
         <Stack
           horizontalAlign="center"
           styles={{ root: { width: "fit-content" } }}
-          tokens={{ childrenGap: "l1" }}
+          tokens={{ childrenGap: "s1" }}
         >
           <Label
             styles={{
@@ -84,6 +85,11 @@ const NewProduct = () => {
           </Label>
           <TextField
             label="Naziv proizvoda"
+            styles={{
+              root: {
+                width: "200px",
+              },
+            }}
             value={productName}
             onChange={(_, newValue) => setProductName(newValue || "")}
           />
@@ -92,26 +98,59 @@ const NewProduct = () => {
             cols={22}
             rows={3}
             label="Opis proizvoda"
+            styles={{
+              root: {
+                width: "200px",
+              },
+            }}
             value={productDescription}
             onChange={(_, newValue) => setProductDescription(newValue || "")}
           />
           <TextField
             label="Sastojci"
+            styles={{
+              root: {
+                width: "200px",
+              },
+            }}
             value={productIngredients}
             onChange={(_, newValue) => setProductIngredients(newValue || "")}
           />
           <TextField
             label="Cena"
+            styles={{
+              root: {
+                width: "200px",
+              },
+            }}
             type="number"
             value={productPrice}
             onChange={(_, newValue) => setProductPrice(newValue || "")}
           />
-          <TextField
-            label="Slika proizvoda"
-            value={productImage}
-            onChange={(_, newValue) => setProductImage(newValue || "")}
-            type="file"
-          />
+          <PrimaryButton
+            styles={{
+              root: {
+                ...commonButtonStyles.root,
+                width: "200px",
+              },
+            }}
+            onClick={() => document.getElementById("file-upload")?.click()}
+          >
+            {productImage ? "Slika izabrana" : "Izaberi sliku"}
+            <input
+              type="file"
+              id="file-upload"
+              hidden
+              onChange={(e) => {
+                const selectedFile = e.target.files?.[0];
+                console.log(selectedFile);
+                setProductImage(
+                  selectedFile ? "images/" + selectedFile.name : ""
+                );
+              }}
+            />
+          </PrimaryButton>
+
           <ChoiceGroup
             label="Pick one image"
             value={productType}

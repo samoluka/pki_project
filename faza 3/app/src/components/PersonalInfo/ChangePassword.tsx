@@ -98,6 +98,7 @@ const ChangePassword = () => {
               oldPassword === "" ||
               newPassword === "" ||
               repeatedNewPassword === "" ||
+              newPassword.length < 8 ||
               newPassword !== repeatedNewPassword
             }
             onClick={() => {

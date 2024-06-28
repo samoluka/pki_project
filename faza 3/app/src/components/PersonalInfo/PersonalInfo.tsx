@@ -31,6 +31,18 @@ const PersonalInfo = () => {
 
   const [message, setMessage] = useState("");
 
+  const checkIfDisabled = () => {
+    // check if any field is empty
+    // check if phone number is not in format xxx xxx xxx(x)\
+    return (
+      user.firstName === "" ||
+      user.lastName === "" ||
+      user.phoneNumber === "" ||
+      user.address === "" ||
+      user.phoneNumber.replace(/\s/g, "").match(/^\d{9,10}$/) === null
+    );
+  };
+
   return (
     <Stack
       styles={{
@@ -161,6 +173,7 @@ const PersonalInfo = () => {
             styles={{
               ...commonButtonStyles,
             }}
+            disabled={checkIfDisabled()}
             onClick={() => {
               // save changes in localstorage and in UserApi
               const storedUser = UserApi.getInstance().LogedUser;

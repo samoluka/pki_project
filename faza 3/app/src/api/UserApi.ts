@@ -66,11 +66,6 @@ export class UserApi {
     return user;
   }
 
-  // write user to the json file on location ../../data/users
-  public async register(user: User) {
-    this.allUsers.push(user);
-  }
-
   public getAllUsers() {
     return this.allUsers;
   }
