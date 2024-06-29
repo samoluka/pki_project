@@ -13,7 +13,7 @@ export const UserSingleOrderView = () => {
 
   const getTextColor = (status: string) => {
     switch (status) {
-      case "In progress":
+      case "U toku":
         return ColorTheme.COLOR_TEXT;
       case "Prihvaćena":
         return "green";
@@ -29,6 +29,7 @@ export const UserSingleOrderView = () => {
         root: {
           minHeight: "100vh",
           width: "100vw",
+          overflowY: "auto",
         },
       }}
       horizontalAlign="center"
@@ -42,6 +43,9 @@ export const UserSingleOrderView = () => {
         styles={{
           root: {
             paddingTop: "20%",
+            "@media (min-width: 768px)": {
+              paddingTop: "8%",
+            },
           },
         }}
       >
@@ -67,7 +71,7 @@ export const UserSingleOrderView = () => {
           }}
         >
           {"Ukupna cena: "}
-          {order.sweets.reduce((acc, item) => acc + item.quantity, 0)}
+          {order.sweets.reduce((acc, item) => acc + item.totalPrice, 0)}
           {"RSD"}
         </Label>
         {order.sweets.map((item) => (

@@ -1,5 +1,6 @@
 import orders from "../data/orders.json";
 import { Order } from "../models/Order";
+import { NotificationApi } from "./NotificationApi";
 
 export class OrderApi {
   private allOrders: Order[];
@@ -43,6 +44,10 @@ export class OrderApi {
       this.allOrders[index].status = "Prihvaćena";
       localStorage.setItem("orders", JSON.stringify(this.allOrders));
     }
+    NotificationApi.getInstance().addNotification({
+      username: order.username,
+      order_id: order.id,
+    });
   }
 
   public declineOrder(order: Order) {
@@ -51,6 +56,10 @@ export class OrderApi {
       this.allOrders[index].status = "Odbijena";
       localStorage.setItem("orders", JSON.stringify(this.allOrders));
     }
+    NotificationApi.getInstance().addNotification({
+      username: order.username,
+      order_id: order.id,
+    });
   }
 
   public deleteOrder(order: Order) {

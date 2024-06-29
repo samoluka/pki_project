@@ -46,7 +46,7 @@ export const Products = () => {
           }}
           horizontalAlign="center"
           verticalAlign="space-between"
-          tokens={{ childrenGap: "l1", padding: "l1" }}
+          tokens={{ childrenGap: "s1", padding: "l1" }}
         >
           <Stack horizontalAlign="center" verticalAlign="center">
             <Label
@@ -58,13 +58,13 @@ export const Products = () => {
             >
               Torte
             </Label>
-            <Stack tokens={{ childrenGap: "l1" }}>
+            <Stack tokens={{ childrenGap: "s1" }}>
               {torte.slice(leftIndex * 3, leftIndex * 3 + 3).map((product) => (
                 <ProductCard product={product} />
               ))}
             </Stack>
           </Stack>
-          <Stack horizontal tokens={{ childrenGap: "l1" }}>
+          <Stack horizontal tokens={{ childrenGap: "s1" }}>
             <IconButton
               iconProps={{ iconName: "DoubleChevronLeft12" }}
               disabled={leftIndex === 0 || torte.length === 0}
@@ -105,7 +105,7 @@ export const Products = () => {
           }}
           horizontalAlign="center"
           verticalAlign="space-between"
-          tokens={{ childrenGap: "l1", padding: "l1" }}
+          tokens={{ childrenGap: "s1", padding: "l1" }}
         >
           <Stack horizontalAlign="center" verticalAlign="center">
             <Label
@@ -117,7 +117,7 @@ export const Products = () => {
             >
               Kolači
             </Label>
-            <Stack tokens={{ childrenGap: "l1" }}>
+            <Stack tokens={{ childrenGap: "s1" }}>
               {kolaci
                 .slice(rightIndex * 3, rightIndex * 3 + 3)
                 .map((product) => (
@@ -125,7 +125,7 @@ export const Products = () => {
                 ))}
             </Stack>
           </Stack>
-          <Stack horizontal tokens={{ childrenGap: "l1" }}>
+          <Stack horizontal tokens={{ childrenGap: "s1" }}>
             <IconButton
               iconProps={{ iconName: "DoubleChevronLeft12" }}
               disabled={rightIndex === 0 || kolaci.length === 0}

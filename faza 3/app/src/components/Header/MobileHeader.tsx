@@ -7,6 +7,8 @@ import {
   getTheme,
 } from "@fluentui/react";
 import { useState } from "react";
+import { NotificationApi } from "../../api/NotificationApi";
+import { UserApi } from "../../api/UserApi";
 import { AppFontFamily, AppName, ColorTheme } from "../../shared/Constants";
 
 export const MobileHeader = () => {
@@ -19,7 +21,7 @@ export const MobileHeader = () => {
     { text: "Licne informacije", href: "/personal-info" },
     { text: "Promena lozinke", href: "/change-password" },
     { text: "Korpa", href: "/order" },
-    { text: "Obavestenja", href: "/notifications" },
+    { text: "Narudzbine", href: "/notifications" },
     { text: "Odjavi se", href: "/logout" },
   ];
 
@@ -95,10 +97,33 @@ export const MobileHeader = () => {
               key={index}
               styles={{
                 root: {
-                  color: ColorTheme.COLOR_TEXT,
+                  color:
+                    NotificationApi.getInstance().getNotificationsForUser(
+                      UserApi.getInstance().LogedUser.username
+                    ).length > 0 && option.text === "Narudzbine"
+                      ? "red"
+                      : ColorTheme.COLOR_TEXT,
                 },
               }}
               onClick={() => {
+                // if there are notifications and user is clicking on notifications
+                if (
+                  NotificationApi.getInstance().getNotificationsForUser(
+                    UserApi.getInstance().LogedUser.username
+                  ).length > 0 &&
+                  option.text === "Narudzbine"
+                ) {
+                  // clear notifications
+                  NotificationApi.getInstance()
+                    .getNotificationsForUser(
+                      UserApi.getInstance().LogedUser.username
+                    )
+                    .forEach((notification) => {
+                      NotificationApi.getInstance().removeNotification(
+                        notification
+                      );
+                    });
+                }
                 onMenuClick(option.href);
               }}
             >

@@ -12,7 +12,7 @@ export const MobileNotifications = () => {
   const user = UserApi.getInstance().LogedUser;
   const getTextColor = (status: string) => {
     switch (status) {
-      case "In progress":
+      case "U toku":
         return ColorTheme.COLOR_TEXT;
       case "Prihvaćena":
         return "green";
@@ -28,6 +28,7 @@ export const MobileNotifications = () => {
         root: {
           minHeight: "100vh",
           width: "100vw",
+          overflowY: "auto",
         },
       }}
       horizontalAlign="center"
@@ -39,6 +40,10 @@ export const MobileNotifications = () => {
         styles={{
           root: {
             paddingTop: "20%",
+            // if not mobile screen add set smaller padding
+            "@media (min-width: 768px)": {
+              paddingTop: "8%",
+            },
           },
         }}
         horizontalAlign="center"
@@ -48,7 +53,7 @@ export const MobileNotifications = () => {
             root: { color: ColorTheme.COLOR_TEXT, fontSize: "x-large" },
           }}
         >
-          Obaveštenja
+          Narudžbine
         </Label>
         {OrderApi.getInstance()
           .getAllOrdersForUser(user.username)

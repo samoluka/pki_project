@@ -7,6 +7,7 @@ import {
   Stack,
   getTheme,
 } from "@fluentui/react";
+import { NotificationApi } from "../../api/NotificationApi";
 import { OrderApi } from "../../api/OrderApi";
 import { UserApi } from "../../api/UserApi";
 import { AppFontFamily, AppName, ColorTheme } from "../../shared/Constants";
@@ -151,6 +152,24 @@ export const WebHeader = () => {
             document.location.href = "/order";
           }}
         />
+        {user.role !== "admin" && (
+          <ActionButton
+            text={"Narudžbine"}
+            styles={{
+              root: {
+                textHeight: "50px",
+                width: "fit-content",
+                borderColor: "transparent",
+                fontSize: FontSizes.size32,
+                color: ColorTheme.COLOR_TEXT,
+              },
+            }}
+            onClick={() => {
+              // redirect to change password
+              document.location.href = "/notifications";
+            }}
+          />
+        )}
       </Stack>
       <Stack horizontal tokens={{ childrenGap: "l1", padding: "l1" }}>
         <Label
@@ -192,19 +211,31 @@ export const WebHeader = () => {
             styles={{
               icon: {
                 fontSize: 30,
-                color: ColorTheme.COLOR_TEXT,
+                color:
+                  NotificationApi.getInstance().getNotificationsForUser(
+                    user.username
+                  ).length > 0
+                    ? "red"
+                    : ColorTheme.COLOR_TEXT,
               },
             }}
             menuProps={{
-              items: OrderApi.getInstance()
-                .getAllOrdersForUser(user.username)
-                .map((order) => {
+              items: NotificationApi.getInstance()
+                .getNotificationsForUser(user.username)
+                .map((notification) => {
+                  const order = OrderApi.getInstance()
+                    .getAllOrdersForUser(user.username)
+                    .find((order) => order.id === notification.order_id);
                   return {
                     key: order.id.toString(),
                     text: `Porudzbina ${order.id}: ${order.status}`,
                     onClick: () => {
                       // redirect to change password
                       document.location.href = `/order/${order.id}`;
+                      // remove notification
+                      NotificationApi.getInstance().removeNotification(
+                        notification
+                      );
                     },
                   };
                 }),

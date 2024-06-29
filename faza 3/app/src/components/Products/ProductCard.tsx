@@ -11,7 +11,7 @@ export const ProductCard = (props: { product: Cake }) => {
           ...cardStyle,
           backgroundColor: ColorTheme.COLOR_SECONDARY,
           width: "400px",
-          height: "200px",
+          height: "fit-content",
         },
       }}
       horizontalAlign="center"
@@ -22,7 +22,7 @@ export const ProductCard = (props: { product: Cake }) => {
         src={process.env.PUBLIC_URL + product.picture}
         alt="cake"
         style={{
-          height: "150px",
+          height: "120px",
         }}
         onClick={() => {
           document.location.href = "/product/" + product.id;
@@ -31,7 +31,7 @@ export const ProductCard = (props: { product: Cake }) => {
       <Label
         styles={{
           root: {
-            fontSize: "large",
+            fontSize: "normal",
           },
         }}
       >

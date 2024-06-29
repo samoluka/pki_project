@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ColorTheme } from "../../shared/Constants";
 import Home from "../Home/Home";
 import Login from "../Login";
+import { MobileNotifications } from "../Orders/MobileNotifications";
 import { OrdersPage } from "../Orders/OrdersPage";
 import { UserSingleOrderView } from "../Orders/UserSingleOrderView";
 import ChangePassword from "../PersonalInfo/ChangePassword";
@@ -35,6 +36,7 @@ export const WebRouter = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/order" element={<OrdersPage />} />
           <Route path="/order/:id" element={<UserSingleOrderView />} />
+          <Route path="notifications" element={<MobileNotifications />} />
           <Route path="change-password" element={<ChangePassword />} />
         </Routes>
       </Stack>

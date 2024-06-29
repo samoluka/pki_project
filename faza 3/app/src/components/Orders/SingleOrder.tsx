@@ -13,7 +13,7 @@ export const SingleOrder = (props: {
   const user = UserApi.getInstance()
     .getAllUsers()
     .filter((u) => u.username === props.order.username)[0];
-  const inProgress = props.order.status === "In progress";
+  const inProgress = props.order.status === "U toku";
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -56,7 +56,7 @@ export const SingleOrder = (props: {
             root: { color: ColorTheme.COLOR_TEXT, fontSize: "x-large" },
           }}
         >
-          {props.order.sweets.reduce((acc, item) => acc + item.quantity, 0)}
+          {props.order.sweets.reduce((acc, item) => acc + item.totalPrice, 0)}
           {"RSD"}
         </Label>
         {!inProgress && (
@@ -121,7 +121,7 @@ export const SingleOrder = (props: {
         )}
         <IconButton
           iconProps={{
-            iconName: expanded ? "DoubleChevronUp" : "DoubleChevronDown",
+            iconName: expanded ? "DoubleChevronUp12" : "DoubleChevronDown12",
           }}
           title="Emoji"
           ariaLabel="Emoji"

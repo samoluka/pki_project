@@ -52,7 +52,7 @@ const Product = () => {
       new Order(
         currentUser.username,
         [],
-        "In progress", // get random order id
+        "U toku", // get random order id
         Math.floor(Math.random() * 1000000)
       );
 
